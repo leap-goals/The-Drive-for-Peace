@@ -1,0 +1,2900 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>苫米地進化論（5定理版）─ 認知ホメオスタシスから象徴文化と進化へ</title>
+
+<!-- ===== MathJax v3 : $...$ inline / $$...$$ block ===== -->
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$']],
+    displayMath: [['$$', '$$']],
+    processEscapes: true,
+    tags: 'none'
+  },
+  chtml: { scale: 0.9 },
+  options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+};
+</script>
+<script id="MathJax-script" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* ════════════════════════════════
+   KLEIN BLUE — MONO BLUE SYSTEM
+   C1 Klein Blue · C2 Amber Gold (insight only)
+   Theorem boxes unified · No red · White text on blue
+   ════════════════════════════════ */
+:root{
+  --c1:#002FA7; --c1t:#EBF0FF; --c1e:#001370;
+  --c2:#D4930A; --c2t:#FFF7E0; --c2e:#7A5000;
+  --bg:#FFFFFF; --card:#FFFFFF; --card2:#EEF1FA;
+  --tx:#080C1E; --tx2:#38426B; --tx3:#8A96BB; --bdr:#D0D8F0;
+}
+@media(prefers-color-scheme:dark){
+  :root:not(.light){
+    --c1:#5080FF; --c1t:#030B28; --c1e:#A0BCFF;
+    --c2:#F0B830; --c2t:#201200; --c2e:#FFE080;
+    --bg:#050915; --card:#0A1225; --card2:#101A38;
+    --tx:#E8EEF8; --tx2:#8090BB; --tx3:#445070; --bdr:#1A2648;
+  }
+}
+html.dark{
+  --c1:#5080FF; --c1t:#030B28; --c1e:#A0BCFF;
+  --c2:#F0B830; --c2t:#201200; --c2e:#FFE080;
+  --bg:#050915; --card:#0A1225; --card2:#101A38;
+  --tx:#E8EEF8; --tx2:#8090BB; --tx3:#445070; --bdr:#1A2648;
+}
+html.light{
+  --c1:#002FA7; --c1t:#EBF0FF; --c1e:#001370;
+  --c2:#D4930A; --c2t:#FFF7E0; --c2e:#7A5000;
+  --bg:#FFFFFF; --card:#FFFFFF; --card2:#EEF1FA;
+  --tx:#080C1E; --tx2:#38426B; --tx3:#8A96BB; --bdr:#D0D8F0;
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;
+  background:var(--bg);color:var(--tx);
+  line-height:1.75;font-size:15px;
+  transition:background .25s,color .25s;
+}
+
+/* ─── HEADER ─── */
+.hd{
+  background:linear-gradient(145deg,#001370 0%,#002FA7 100%);
+  padding:28px 16px 22px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.hd::after{display:none}
+.hd h1{font-size:20px;font-weight:800;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.22);margin-bottom:4px}
+.hd h1 em{display:block;font-size:13px;font-style:normal;opacity:.9;margin-top:4px;font-weight:500}
+.hd .summit{font-size:11px;color:rgba(255,255,255,.78);margin-top:10px}
+.hd .author{font-size:13px;color:rgba(255,255,255,.92);margin-top:6px;font-weight:600}
+
+/* ─── THEME TOGGLE ─── */
+.theme-btn{
+  position:absolute;top:12px;right:12px;
+  background:rgba(255,255,255,.22);
+  border:1px solid rgba(255,255,255,.35);
+  color:#fff;font-size:16px;
+  width:36px;height:36px;border-radius:50%;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  transition:.2s;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+}
+.theme-btn:hover{background:rgba(255,255,255,.35)}
+
+/* ─── NAV ─── */
+.nav{
+  background:var(--card);border-bottom:2px solid var(--c1t);
+  overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;
+  padding:8px 0;position:sticky;top:0;z-index:200;
+  scrollbar-width:none;transition:background .25s,border-color .25s;
+}
+.nav::-webkit-scrollbar{display:none}
+.nav a{
+  display:inline-block;padding:5px 13px;font-size:12px;
+  color:var(--tx2);text-decoration:none;border-radius:20px;
+  margin:0 3px;font-weight:600;transition:.18s;
+}
+.nav a:first-child{margin-left:12px}
+.nav a:last-child{margin-right:12px}
+.nav a:hover,.nav a.on{background:var(--c1);color:#fff}
+
+/* ─── MAIN ─── */
+.main{padding:14px 14px 40px;max-width:100%}
+
+/* ─── PART HEADER ─── */
+.pt-hd{
+  background:linear-gradient(135deg,var(--c1e),var(--c1));
+  color:#fff;padding:16px;border-radius:14px;margin:24px 0 14px;text-align:center;
+}
+.pt-hd h2{font-size:16px;font-weight:800}
+.pt-hd .sub{font-size:12px;opacity:.88;margin-top:5px}
+
+/* ─── SECTION TITLE ─── */
+.stitle{
+  font-size:15px;font-weight:800;
+  color:var(--c1e);
+  border-left:4px solid var(--c1);
+  padding-left:11px;margin:20px 0 11px;
+}
+
+/* ─── CARD ─── */
+.card{
+  background:var(--card);border-radius:13px;padding:15px;margin:11px 0;
+  box-shadow:0 2px 10px rgba(0,47,167,.07);
+  border:1px solid var(--bdr);
+  transition:background .25s,border-color .25s;
+}
+.card h3{font-size:14px;font-weight:700;margin-bottom:9px;color:var(--tx)}
+.card p,.card li{font-size:14px;line-height:1.75;color:var(--tx)}
+
+/* ─── THEOREM BOXES — all unified in Klein Blue ─── */
+.thm{border-radius:13px;padding:16px;margin:15px 0;transition:background .25s,border-color .25s}
+.t1,.t2,.t3,.t11,.t12{background:var(--c1t);border:2px solid var(--c1)}
+.thm-label{font-size:10.5px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:7px}
+.lb1,.lb2,.lb3,.lb11,.lb12{color:var(--c1e)}
+.thm h3{font-size:15px;font-weight:800;margin-bottom:11px;color:var(--tx)}
+
+/* ─── FORMULA BOXES — all unified in Klein Blue ─── */
+.fml{
+  border-radius:0 10px 10px 0;padding:13px;margin:11px 0;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+  transition:background .25s,border-color .25s;
+}
+.fml-pk,.fml-or,.fml-bl,.fml-pu,.fml-gn,.fml-tl{
+  background:var(--c1t);border-left:4px solid var(--c1);
+}
+
+/* ─── DEF BOX ─── */
+.def{background:var(--card2);border-left:4px solid var(--tx3);border-radius:0 10px 10px 0;padding:12px 13px;margin:9px 0;transition:background .25s}
+.def .def-t{font-size:11px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}
+
+/* ─── NOTE / INSIGHT / WARN ─── */
+.note{background:var(--c1t);border-left:4px solid var(--c1);border-radius:0 10px 10px 0;padding:12px 13px;margin:9px 0;transition:background .25s}
+.insight{background:var(--c2t);border-left:4px solid var(--c2);border-radius:0 10px 10px 0;padding:12px 13px;margin:9px 0;transition:background .25s}
+.warn{background:var(--c1t);border-left:4px solid var(--c1e);border-radius:0 10px 10px 0;padding:12px 13px;margin:9px 0;transition:background .25s}
+
+/* ─── READING NOTE ─── */
+.rdnote{
+  background:var(--c1t);border:1px solid var(--c1);
+  border-radius:11px;padding:13px;margin:11px 0;
+  transition:background .25s,border-color .25s;
+}
+.rdnote .rdt{font-size:12px;font-weight:700;color:var(--c1e);margin-bottom:7px}
+
+/* ─── VAR TABLE ─── */
+.vtbl{width:100%;border-collapse:collapse;margin:11px 0;font-size:13px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.vtbl th{background:var(--c1);color:#fff;padding:8px 10px;text-align:left;font-size:12px}
+.vtbl td{padding:8px 10px;border-bottom:1px solid var(--bdr);vertical-align:top;min-width:80px;color:var(--tx)}
+.vtbl tr:nth-child(even){background:var(--card2)}
+.vs{font-weight:700;color:var(--c1e);font-family:'Courier New',monospace;white-space:nowrap}
+
+/* ─── STEP LIST ─── */
+.steps{list-style:none;margin:11px 0}
+.steps li{display:flex;align-items:flex-start;gap:10px;margin:9px 0;font-size:14px;color:var(--tx)}
+.sn{
+  min-width:26px;height:26px;
+  background:var(--c1);color:#fff;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px;
+}
+
+/* ─── BULLET LIST ─── */
+.blist{list-style:none;margin:8px 0}
+.blist li{padding-left:18px;position:relative;margin:6px 0;font-size:14px;line-height:1.7;color:var(--tx)}
+.blist li::before{content:'●';position:absolute;left:0;color:var(--c1);font-size:10px;top:5px}
+
+/* ─── BILINGUAL ─── */
+.bi-en{font-size:14px;line-height:1.75;color:var(--tx)}
+.bi-ja{font-size:13px;line-height:1.75;color:var(--tx2);margin-top:6px;border-top:1px dashed var(--bdr);padding-top:7px}
+
+/* ─── COLLAPSIBLE ─── */
+.col-hd{
+  background:var(--c1t);padding:12px 15px;border-radius:11px;
+  cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+  margin:10px 0;font-size:14px;font-weight:700;
+  color:var(--tx);user-select:none;-webkit-user-select:none;
+  transition:background .2s,color .2s;
+}
+.col-hd:hover{background:var(--c1);color:#fff}
+.col-hd:hover::after{color:#fff}
+.col-hd::after{content:'▾';font-size:14px;transition:.25s;color:var(--c1e)}
+.col-hd.open::after{transform:rotate(180deg)}
+.col-bd{display:none;padding:10px 2px}
+.col-bd.open{display:block}
+
+/* ─── THEOREM SUMMARY TABLE ─── */
+.thm-tbl{width:100%;border-collapse:collapse;font-size:12px;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:12px 0}
+.thm-tbl th{background:var(--c1);color:#fff;padding:8px;text-align:left}
+.thm-tbl td{padding:8px;border-bottom:1px solid var(--bdr);vertical-align:top;min-width:90px;color:var(--tx)}
+.thm-tbl tr:nth-child(even){background:var(--card2)}
+
+/* ─── DIVIDER ─── */
+.divider{border:none;border-top:2px dashed var(--c1t);margin:22px 0}
+
+/* ─── TAG ─── */
+.tag{display:inline-block;background:var(--c1t);color:var(--c1e);font-size:11px;font-weight:600;padding:2px 9px;border-radius:20px;margin:2px}
+
+/* ─── FOOTER ─── */
+.footer{background:var(--c1);color:#fff;text-align:center;padding:20px 16px;margin-top:32px;font-size:12px;line-height:1.7}
+.footer a{color:rgba(255,255,255,.80);text-decoration:underline}
+
+/* ─── MATH OVERFLOW ─── */
+mjx-container{overflow-x:auto;max-width:100%;display:block}
+.MJX-TEX{overflow-x:auto}
+
+/* ─── UTILS ─── */
+.tc{text-align:center}
+.bold{font-weight:700}
+.sm{font-size:13px}
+.pk{color:var(--c1e)}
+.mt8{margin-top:8px}
+.mt14{margin-top:14px}
+.mt20{margin-top:20px}
+p{margin:7px 0;font-size:14px;color:var(--tx)}
+
+
+/* ── Two Entropies Diagram ── */
+.ent-outer { margin:14px 0 }
+
+/* 2パネル レイアウト */
+.ent-panels {
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:8px;
+  align-items:center;
+}
+
+/* VS セパレータ */
+.ent-vs {
+  font-size:15px;
+  font-weight:900;
+  color:var(--tx3);
+  text-align:center;
+  padding:0 2px;
+}
+
+/* 各パネル */
+.ent-panel {
+  background:var(--card2);
+  border-radius:11px;
+  overflow:hidden;
+}
+
+/* パネルタイトルバー */
+.ent-panel-hd {
+  padding:7px 10px;
+  font-size:11px;
+  font-weight:800;
+  text-align:center;
+  line-height:1.35;
+}
+.ent-panel.phys .ent-panel-hd { background:var(--c1); color:#fff }
+.ent-panel.cog  .ent-panel-hd { background:var(--c2); color:var(--tx) }
+
+/* パネル本体 */
+.ent-panel-body { padding:10px 6px 6px }
+
+/* 時間軸ラベル */
+.ent-time {
+  font-size:9px;
+  color:var(--tx3);
+  text-align:center;
+  margin-bottom:6px;
+  letter-spacing:.4px;
+}
+
+/* ステージ列 */
+.ent-stages {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+}
+.ent-stage {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  flex:1;
+}
+.ent-stage svg { width:42px; height:42px; overflow:visible }
+.ent-stage-lbl {
+  font-size:8.5px;
+  text-align:center;
+  color:var(--tx2);
+  line-height:1.3;
+}
+.ent-stg-arr {
+  font-size:13px;
+  color:var(--tx3);
+  flex-shrink:0;
+  padding:0 1px;
+  align-self:center;
+  margin-bottom:16px;
+}
+
+/* 底部 数式ラベル */
+.ent-eq {
+  font-size:10px;
+  font-weight:700;
+  text-align:center;
+  padding:5px 8px;
+  border-radius:0 0 8px 8px;
+  margin-top:6px;
+}
+.ent-panel.phys .ent-eq { background:var(--c1t); color:var(--c1e) }
+.ent-panel.cog  .ent-eq { background:var(--c2t); color:var(--c2e) }
+
+/* モバイル: 縦積み */
+@media(max-width:520px){
+  .ent-panels { grid-template-columns:1fr; grid-template-rows:auto auto auto }
+  .ent-vs     { padding:4px 0 }
+  .ent-stage svg { width:38px; height:38px }
+}
+
+/* ── §1.1 Abstraction Pyramid ── */
+
+/* 全体レイアウト: [左軸ラベル] [ピラミッド] [右軸ラベル] */
+.abst-layout {
+  display:grid;
+  grid-template-columns:26px 1fr 26px;
+  gap:6px;
+  align-items:center;
+  margin:14px 0;
+}
+
+/* 軸ラベル（縦書き） */
+.abst-side {
+  font-size:8px;
+  font-weight:700;
+  color:var(--tx3);
+  writing-mode:vertical-rl;
+  text-align:center;
+  line-height:1.5;
+  letter-spacing:.4px;
+}
+.abst-side.left  { transform:rotate(180deg); color:var(--c1e) }
+.abst-side.right { color:var(--tx3) }
+
+/* ピラミッド本体 */
+.abst-pyramid { display:flex; flex-direction:column; gap:5px }
+
+/* 頂点の星 */
+.abst-star {
+  text-align:center;
+  font-size:18px;
+  line-height:1;
+  color:var(--c2);
+  margin-bottom:0px;
+}
+
+/* 各レベル */
+.abst-level {
+  display:flex;
+  gap:4px;
+}
+/* 上に行くほど両端にパディングを入れてピラミッド形に */
+.abst-lv3 { padding:0 26% }   /* Top  : 動物 1個 */
+.abst-lv2 { padding:0 4%  }   /* Mid  : 犬猫鳥魚 4個 */
+.abst-lv1 { padding:0; flex-wrap:wrap }   /* Bot  : 8個 */
+
+/* 各ボックス */
+.abst-box {
+  flex:1;
+  border-radius:6px;
+  padding:5px 3px;
+  text-align:center;
+  border:1.5px solid;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-width:28px;
+}
+
+/* レベル別カラー */
+.abst-lv3 .abst-box {
+  background:var(--c1);
+  border-color:var(--c1);
+  color:#fff;
+}
+.abst-lv2 .abst-box {
+  background:var(--c1t);
+  border-color:var(--c1);
+  color:var(--c1e);
+}
+.abst-lv1 .abst-box {
+  background:var(--card2);
+  border-color:var(--bdr);
+  color:var(--tx2);
+  flex:1 1 20%;  /* 4列×2行 */
+  min-width:38px;
+}
+
+.abst-ja { font-size:11px; font-weight:700; display:block; line-height:1.3 }
+.abst-en { font-size:7.5px; display:block; opacity:.72; margin-top:1px; line-height:1.2 }
+
+/* 底部の凡例バー */
+.abst-legend {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-top:10px;
+  padding:7px 10px;
+  background:var(--card2);
+  border-radius:8px;
+}
+.abst-legend-bar {
+  flex:1;
+  height:8px;
+  border-radius:4px;
+  background:linear-gradient(to right, var(--card2), var(--c1t), var(--c1));
+  border:1px solid var(--bdr);
+}
+.abst-legend-label {
+  font-size:9px;
+  color:var(--tx3);
+  white-space:nowrap;
+}
+
+/* モバイル: 軸ラベル非表示、ピラミッドを全幅に */
+@media(max-width:480px){
+  .abst-layout { grid-template-columns:0 1fr 0; gap:0 }
+  .abst-side   { display:none }
+  .abst-lv3    { padding:0 22% }
+  .abst-lv2    { padding:0 2% }
+  .abst-ja     { font-size:10px }
+}
+
+
+/* TCZ グリーンゾーン図 */
+.tcz-svg-wrap {
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  margin:14px 0;
+  border-radius:10px;
+}
+.tcz-svg-wrap svg {
+  min-width:260px;
+  width:100%;
+  max-width:480px;
+  display:block;
+  margin:0 auto;
+}
+
+
+
+/* Slide 7 trajectory diagram */
+.xt-svg-wrap {
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  margin:14px 0;
+  border-radius:10px;
+}
+.xt-svg-wrap svg {
+  min-width:260px;
+  width:100%;
+  max-width:480px;
+  display:block;
+  margin:0 auto;
+}
+
+
+
+.vfunc-svg-wrap {
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  margin:14px 0;
+  border-radius:10px;
+}
+.vfunc-svg-wrap svg {
+  min-width:260px;
+  width:100%;
+  max-width:480px;
+  display:block;
+  margin:0 auto;
+}
+
+/* ── Slide 9: TCZ 定義図 ── */
+.tcz3-svg-wrap {
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  margin:14px 0;
+  border-radius:10px;
+}
+.tcz3-svg-wrap svg {
+  min-width:260px;
+  width:100%;
+  max-width:480px;
+  display:block;
+  margin:0 auto;
+}
+
+
+
+
+
+/* ── §20.1 Seven-Stage Flow Diagram ── */
+.sf-wrap { margin:16px 0 }
+.sf-title { text-align:center; font-weight:700; font-size:13px; color:var(--tx); margin-bottom:4px }
+.sf-subtitle { text-align:center; font-size:12px; color:var(--tx2); margin-bottom:14px }
+
+/* ── Flow row: 折り返しなし・横スクロール ── */
+.sf-row {
+  display: flex;
+  align-items: stretch;       /* 行内で高さ統一 */
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 2px 2px 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--c1t) transparent;
+}
+.sf-row + .sf-row { margin-top: 6px }
+
+/* ── Individual box: 列方向レイアウト ── */
+.sf-box {
+  flex: 0 0 130px;            /* 固定幅 — 折り返しバグ解消 */
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1.5px solid var(--c1);
+  background: var(--card);
+  display: flex;              /* ★ 追加: 縦方向レイアウト */
+  flex-direction: column;     /* ★ 追加 */
+}
+.sf-box.sf-a { border-color: var(--c2) }
+.sf-box.sf-d { border-color: var(--c1e) }
+
+/* ── Box header ── */
+.sf-hd {
+  background: var(--c1);
+  color: #fff;
+  padding: 8px;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  display: flex;
+  align-items: center;        /* 丸数字とテキストを垂直中央揃え */
+  gap: 5px;
+}
+.sf-box.sf-a .sf-hd { background: var(--c2); color: var(--tx) }
+.sf-box.sf-d .sf-hd { background: var(--c1e); color: #fff }
+
+/* ── Circle number ── */
+.sf-n {
+  min-width: 18px; height: 18px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.28);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 900;
+  flex-shrink: 0;
+}
+.sf-box.sf-a .sf-n { background: rgba(0,0,0,.14) }
+
+/* ── Box body: 残り高さを埋めてテキスト中央揃え ── */
+.sf-bd {
+  flex: 1;                    /* ★ 変更: min-height → flex:1 で高さを埋める */
+  padding: 12px 8px;          /* 上下余白を増やして読みやすく */
+  font-size: 12px;
+  color: var(--tx2);
+  text-align: center;
+  background: var(--c1t);
+  display: flex;
+  align-items: center;        /* 垂直中央 */
+  justify-content: center;
+  line-height: 1.5;
+}
+.sf-box.sf-a .sf-bd { background: var(--c2t) }
+.sf-box.sf-d .sf-bd { background: var(--c1t) }
+
+/* ── Arrows ── */
+.sf-arr {
+  font-size: 16px;
+  color: var(--c1);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0 3px;
+  align-self: center;         /* ボックス高さの中央に矢印を配置 */
+}
+
+/* ── Row connector ── */
+.sf-conn {
+  display: flex;
+  justify-content: flex-end;
+  padding: 3px 14px 0;
+  font-size: 11px;
+  color: var(--tx3);
+}
+
+/* ── 極小画面のみボックス幅を縮小 ── */
+@media (max-width: 380px) {
+  .sf-box { flex: 0 0 108px }
+  .sf-hd  { font-size: 9.5px; padding: 6px }
+}
+
+/* §20 Symbolic Culture Bar Chart */
+.scg-chart-outer { margin:14px 0 }
+
+.scg-chart {
+  position:relative;
+  height:170px;
+  background:var(--card2);
+  border-radius:10px 10px 0 0;
+  overflow:hidden;
+}
+
+/* 「リアルに感じられるライン」ラベル */
+.scg-toplabel {
+  position:absolute;
+  top:7px; right:8px;
+  font-size:8.5px;
+  font-weight:700;
+  color:var(--c1e);
+  text-align:right;
+  line-height:1.4;
+  z-index:3;
+}
+
+/* 閾値の破線 */
+.scg-realline {
+  position:absolute;
+  left:0; right:0;
+  top:38px;
+  border-top:2px dashed var(--c1e);
+  z-index:2;
+}
+
+/* 棒グラフ群 */
+.scg-bars {
+  position:absolute;
+  bottom:0; left:8px; right:8px; top:0;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-around;
+  gap:6px;
+}
+
+/* 各棒（合計140px → 閾値38pxを超える） */
+.scg-bar-col {
+  flex:1;
+  height:140px;
+  display:flex;
+  flex-direction:column;
+  border-radius:4px 4px 0 0;
+  overflow:hidden;
+}
+
+/* 象徴的リフト（上・琥珀） */
+.scg-lift {
+  background:var(--c2);
+  height:62px;
+  flex-shrink:0;
+}
+
+/* 素の臨場感（下・Klein Blue） */
+.scg-base {
+  background:var(--c1);
+  flex:1;
+}
+
+/* 棒ラベル行 */
+.scg-bar-labels {
+  background:var(--card2);
+  border-radius:0 0 10px 10px;
+  display:flex;
+  justify-content:space-around;
+  padding:6px 8px 10px;
+  gap:4px;
+  border-top:1px solid var(--bdr);
+}
+.scg-bar-label {
+  flex:1;
+  text-align:center;
+  font-size:10px;
+  color:var(--tx2);
+  line-height:1.35;
+}
+.scg-bar-label .en {
+  display:block;
+  font-size:8.5px;
+  color:var(--tx3);
+  margin-top:2px;
+}
+
+/* 凡例 */
+.scg-legend {
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  margin-top:12px;
+  flex-wrap:wrap;
+}
+.scg-leg-item {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  color:var(--tx2);
+}
+.scg-leg-dot {
+  width:12px; height:12px;
+  border-radius:2px;
+  flex-shrink:0;
+}
+
+.ai-badge {
+  font-size:9px;
+  background:var(--c2t);
+  color:var(--c2e);
+  border:1px solid var(--c2);
+  border-radius:10px;
+  padding:1px 5px;
+  margin-left:5px;
+  font-weight:600;
+  white-space:nowrap;
+  vertical-align:middle;
+}
+
+/* §21.2 Fitness Horizontal Bar Chart */
+.ffit-wrap { margin:14px 0 }
+
+.ffit-chart {
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  padding:14px;
+  background:var(--card2);
+  border-radius:12px;
+}
+
+/* セクション区切りラベル */
+.ffit-sec {
+  font-size:10px;
+  font-weight:700;
+  color:var(--tx3);
+  text-transform:uppercase;
+  letter-spacing:.8px;
+  padding:4px 0 0;
+}
+.ffit-sep {
+  border-top:2px dashed var(--bdr);
+  margin:4px 0;
+}
+
+/* 1行 */
+.ffit-row {
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* ラベル列 */
+.ffit-lbl {
+  width:90px;
+  flex-shrink:0;
+  font-size:11px;
+  color:var(--tx2);
+  line-height:1.35;
+  text-align:right;
+}
+.ffit-lbl .ja {
+  display:block;
+  font-size:10px;
+  color:var(--tx3);
+  margin-top:1px;
+}
+
+/* バー列 */
+.ffit-barwrap {
+  flex:1;
+  height:22px;
+  background:var(--card);
+  border-radius:4px;
+  overflow:hidden;
+  position:relative;
+}
+.ffit-bar {
+  height:100%;
+  border-radius:4px;
+  min-width:4px;
+  transition:width .4s ease;
+}
+.ffit-bar.pos { background:var(--c1) }
+.ffit-bar.neg {
+  background:var(--c1t);
+  border:1.5px solid var(--c1);
+  box-sizing:border-box;
+}
+.ffit-bar.res {
+  background:var(--c2);
+  height:26px;
+  border-radius:4px;
+  margin-top:-2px;
+}
+
+/* 数値列 */
+.ffit-val {
+  width:34px;
+  flex-shrink:0;
+  font-size:12px;
+  font-weight:700;
+  text-align:right;
+}
+.ffit-val.pos { color:var(--c1e) }
+.ffit-val.neg { color:var(--tx3) }
+.ffit-val.res { color:var(--c2e); font-size:14px }
+
+/* 結果行 */
+.ffit-row.res-row .ffit-lbl { color:var(--tx); font-weight:700 }
+
+/* §21.2 Marginal-Benefit Charts */
+.mb-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin:14px 0;
+}
+.mb-cell {
+  background:var(--card2);
+  border-radius:10px;
+  padding:10px 8px 8px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.mb-var {
+  font-size:13px;
+  font-weight:800;
+  color:var(--c1e);
+  margin-bottom:2px;
+}
+.mb-varja {
+  font-size:9px;
+  color:var(--tx3);
+  margin-bottom:6px;
+  text-align:center;
+  line-height:1.3;
+}
+.mb-svg { width:100%; max-width:140px }
+.mb-legends {
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.mb-leg {
+  display:flex;
+  align-items:center;
+  gap:5px;
+  font-size:10px;
+  color:var(--tx2);
+}
+.mb-leg-solid {
+  width:18px; height:2px;
+  background:var(--c1);
+  border-radius:1px;
+  flex-shrink:0;
+}
+.mb-leg-dash {
+  width:18px; height:2px;
+  background:repeating-linear-gradient(
+    to right,
+    var(--c2) 0, var(--c2) 4px,
+    transparent 4px, transparent 7px
+  );
+  flex-shrink:0;
+}
+@media(max-width:400px){
+  .mb-grid{grid-template-columns:1fr}
+  .mb-svg{max-width:200px}
+}
+
+
+/* ===== SVG figure helpers (theme-aware) ===== */
+.fig-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px 0;border-radius:10px}
+.fig-wrap svg{min-width:280px;width:100%;max-width:460px;display:block;margin:0 auto}
+.fig-cap{font-size:11px;color:var(--tx3);text-align:center;margin-top:6px;line-height:1.5}
+
+/* ── §2.1 認知状態空間図：次元ラベルカラー（ティール） ── */
+:root      { --xt-dim:#168b71 }
+html.dark  { --xt-dim:#33c4a0 }
+@media(prefers-color-scheme:dark){
+  :root:not(.light){ --xt-dim:#33c4a0 }
+}
+
+/* ── §2.1 評価関数 V(x,t) グラフ用追加CSS ── */
+.v-func-green {
+  fill: #388e3c;
+}
+.v-func-green-tx {
+  fill: #388e3c;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+.v-func-red {
+  fill: #d32f2f;
+}
+.v-func-red-tx {
+  fill: #d32f2f;
+  font-size: 10.5px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+.v-func-title {
+  fill: var(--c1e);
+  font-size: 11px;
+  font-weight: 700;
+}
+.v-func-axis {
+  fill: var(--tx3);
+  font-size: 9.5px;
+}
+
+/* ── §2.2 TCZ 閾値と安定領域グラフ用追加CSS ── */
+.v-tcz-fill {
+  /* 水色の塗りつぶし領域 */
+  fill: #cde4eb; 
+}
+.v-tcz-curve {
+  fill: none;
+  stroke: var(--c1);
+  stroke-width: 2.5;
+}
+.v-tcz-axis {
+  stroke: var(--tx3);
+  stroke-width: 1.2;
+}
+.v-tcz-dash {
+  stroke: var(--tx3);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+.v-tcz-text-axis {
+  fill: var(--tx2);
+  font-size: 11px;
+}
+.v-tcz-text-inner {
+  fill: #1a6f7a;
+  font-size: 10px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+.v-tcz-text-note {
+  fill: #207a7a;
+  font-size: 10px;
+  font-weight: 700;
+  text-anchor: start;
+}
+.v-tcz-text-red {
+  fill: #d32f2f;
+  font-size: 10px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+/* ── Einstein 1901 vs 苫米地 同一原理グラフ用追加CSS ── */
+.v-dual-title-phys {
+  fill: #1976D2;
+  font-size: 16px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+.v-dual-title-cog {
+  fill: #d32f2f;
+  font-size: 16px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+.v-dual-subtitle {
+  fill: var(--tx2);
+  font-size: 12px;
+  text-anchor: middle;
+}
+.v-dual-arrow-blue {
+  fill: none;
+  stroke: #1976D2;
+  stroke-width: 2;
+  marker-end: url(#arrow-blue);
+  marker-start: url(#arrow-blue-start);
+}
+.v-dual-arrow-blue-single {
+  fill: none;
+  stroke: #1976D2;
+  stroke-width: 2.5;
+  marker-end: url(#arrow-blue);
+}
+.v-dual-arrow-red-single {
+  fill: none;
+  stroke: #d32f2f;
+  stroke-width: 2.5;
+  marker-end: url(#arrow-red);
+}
+.v-dual-text-blue {
+  fill: #0D47A1;
+  font-size: 12px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+.v-dual-text-red {
+  fill: #b71c1c;
+  font-size: 12px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+.v-dual-tcz-box {
+  fill: #d32f2f;
+  stroke: #b71c1c;
+  stroke-width: 2;
+}
+
+/* ───────────────────────────────
+   §2.3 Ego 最小累積コスト経路
+───────────────────────────────*/
+
+.costpath-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    margin:16px 0;
+    border-radius:10px;
+}
+
+.costpath-wrap svg{
+    width:100%;
+    max-width:500px;
+    min-width:280px;
+    display:block;
+    margin:auto;
+}
+
+.cp-axis{
+    stroke:var(--tx3);
+    stroke-width:1.5;
+}
+
+.cp-red{
+    fill:none;
+    stroke:#c62828;
+    stroke-width:3;
+    stroke-linecap:round;
+}
+
+.cp-blue{
+    fill:none;
+    stroke:var(--c1);
+    stroke-width:3;
+    stroke-linecap:round;
+}
+
+.cp-start{
+    fill:#168b71;
+}
+
+.cp-goal{
+    fill:var(--c2);
+}
+
+.cp-label{
+    fill:var(--tx2);
+    font-size:11px;
+    font-weight:600;
+}
+
+.cp-red-text{
+    fill:#b71c1c;
+    font-size:11px;
+    font-weight:700;
+}
+
+.cp-blue-text{
+    fill:var(--c1e);
+    font-size:11px;
+    font-weight:700;
+}
+
+.cp-axis-text{
+    fill:var(--tx2);
+    font-size:11px;
+    font-weight:600;
+}
+
+/*────────────────────────────────
+ §2.3 累積評価コスト比較
+────────────────────────────────*/
+
+.vcost-wrap{
+    margin:18px 0;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+}
+
+.vcost-wrap svg{
+    width:100%;
+    max-width:460px;
+    min-width:280px;
+    display:block;
+    margin:auto;
+}
+
+.vcost-title{
+    fill:var(--c1e);
+    font-size:13px;
+    font-weight:700;
+    text-anchor:middle;
+}
+
+.vcost-red{
+    fill:#c62828;
+}
+
+.vcost-blue{
+    fill:var(--c1);
+}
+
+.vcost-red-text{
+    fill:#b71c1c;
+    font-size:11px;
+    font-weight:700;
+    text-anchor:middle;
+}
+
+.vcost-blue-text{
+    fill:var(--c1e);
+    font-size:11px;
+    font-weight:700;
+    text-anchor:middle;
+}
+
+.vcost-label{
+    fill:var(--tx2);
+    font-size:12px;
+    font-weight:600;
+    text-anchor:middle;
+}
+
+/* ── 哲学と数学の対応図 ───────────────────── */
+
+.phi-wrap{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    margin:16px 0;
+}
+
+.phi-wrap svg{
+    width:100%;
+    max-width:720px;
+    min-width:320px;
+    display:block;
+    margin:auto;
+}
+
+.phi-title{
+    fill:var(--tx);
+    font-size:18px;
+    font-weight:700;
+}
+
+.phi-sub{
+    fill:var(--tx2);
+    font-size:13px;
+    font-weight:600;
+}
+
+.phi-world{
+    fill:none;
+    stroke:var(--c1);
+    stroke-width:2.5;
+}
+
+.phi-small{
+    fill:#d9e8ff;
+    stroke:var(--c1);
+    stroke-width:2;
+}
+
+.phi-red{
+    fill:#d32f2f;
+    font-size:14px;
+    font-weight:700;
+}
+
+.phi-label{
+    fill:var(--tx);
+    font-size:13px;
+    font-weight:600;
+}
+
+.phi-note{
+    fill:var(--tx2);
+    font-size:12px;
+}
+
+.phi-axis{
+    stroke:var(--tx3);
+    stroke-width:2;
+}
+
+.phi-curve{
+    fill:none;
+    stroke:var(--c1);
+    stroke-width:3;
+}
+
+.phi-dash{
+    stroke:#999;
+    stroke-width:2;
+    stroke-dasharray:6 5;
+}
+
+.phi-dot{
+    fill:#d32f2f;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════ HEADER ══════════════ -->
+<header class="hd">
+  <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">🌙</button>
+  <h1>苫米地進化論（5定理版）
+    <em>認知ホメオスタシスから象徴文化と進化へ</em>
+  </h1>
+  <div class="author">苫米地 英人　Hideto Tomabechi</div>
+  <div class="summit">Cognitive Research Laboratories ・ CyLab, Carnegie Mellon University ・ C5I Center, George Mason University</div>
+  <div class="summit">2026年6月19日（最終更新 2026年6月28日）</div>
+</header>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav class="nav">
+  <a href="#intro">1 序論</a>
+  <a href="#part1">第I部 基盤</a>
+  <a href="#tcz">2 TCZ・Self・Ego</a>
+  <a href="#thm">定理1〜3</a>
+  <a href="#intuition">3 核心的直観</a>
+  <a href="#part2">第II部 象徴・進化</a>
+  <a href="#sym">4 象徴文化生成</a>
+  <a href="#evo">5 進化定理</a>
+  <a href="#ethic">6 倫理制約</a>
+  <a href="#concl">7 結論</a>
+  <a href="#ref">8 参考文献</a>
+  <a href="#appendix">9 付録・証明</a>
+</nav>
+
+<div class="main">
+
+<!-- ════════════════════════════════════════════════
+     1. 序論
+════════════════════════════════════════════════ -->
+<div id="intro">
+<div class="pt-hd">
+  <h2>1. 序論</h2>
+  <div class="sub">理論の射程 ─ 自己変革・コーチング・リーダーシップ</div>
+</div>
+
+<div class="card">
+  <p>多くの自己啓発理論は「行動を変えよ」と言う。多くのリーダーシップ論は「人を動かせ」と言う。多くのコーチング理論は「ゴールを設定せよ」と言う。しかし、これらはいずれも表層的である。</p>
+  <p class="mt8">人間の行動は、単なる意思決定の結果ではない。人間の行動は、その人がどのような世界を<strong>安定的・現実的・意味あるもの</strong>として感じているかによって生成される。したがって、行動を直接変えようとしても深い変化は起きない。必要なのは、<strong>行動を生成する内部構造を変えること</strong>である。</p>
+</div>
+
+<div class="card">
+  <h3>認知物理学と認知生物学</h3>
+  <p>基盤的なレベルでは、本論文で展開する理論は、著者が提唱する二つの学問分野——<strong>認知物理学（Cognitive Physics）</strong>と<strong>認知生物学（Cognitive Biology）</strong>——の中核フレームワークの一つとして意図されている。狙いは、物理学が物質を、生物学が生命を扱うのと同じ数学的厳密さで認知を扱うことにある。</p>
+  <ul class="blist mt8">
+    <li>認知状態は法則的な動力学のもとで時間発展する（<strong>認知物理学</strong>）</li>
+    <li>抽象度・臨場感・利他性といった認知的形質は選択の対象となる（<strong>認知生物学</strong>）</li>
+  </ul>
+  <p class="mt8">以下で導入する TCZ、Ego 制御オペレーター、LUB、未来原点認知時間は、その両者が共有する基本要素である。また本論文は、90年代初頭からサイバーホメオスタシス仮説・超情報場仮説として著者が論文や講義で呼んできた理論のミニマル版形式化となる。</p>
+</div>
+
+<div class="card">
+  <h3>認知戦からの反転</h3>
+  <p>この洞察は、もともと国家安全保障の文脈で発達した。著者の参照論文（2026年4月4日の講義論文）は、認知戦を「対象集団の評価関数 $V(x,t)$ を外部から変形することにより、その Total Comfort Zone（TCZ）を再構成し、行動軌道を変化させるプロセス」として定式化した。すなわち、認知戦は人に何をすべきかを命令するのではない。<strong>決断が下される「地形」そのものを変え、特定の行動が「自然」に感じられるようにする</strong>のである。</p>
+  <p class="mt8">しかし、この同一の数理構造は、その性質上、軍事に固有のものではない。なぜなら、それは人間認知のホメオスタシス的構造そのものを記述しているからである。同じ数理を反転させて——すなわち、相手の自律性を侵害するのではなく、相手の自律性を<strong>高次化する方向</strong>に用いるならば——それはコーチング・リーダーシップ・組織変革・自己変革の理論となる。</p>
+  <p class="mt8">本論文の目的は、この反転を厳密に実行することにある。基礎理論の数理基盤（TCZ・Shared-TCZ・LUB・Lyapunov 収束）をそのまま継承しつつ、応用に固有の概念——臨場感ポテンシャル、Bridge Dynamics、倫理制約——を導入し、自己変革と他者支援、人生のバランスの統一的な数学的言語を構築する。</p>
+</div>
+
+<div class="insight">
+  <p class="bold">中心命題</p>
+  <p class="mt8" style="font-size:15px;line-height:1.85">自己変革とは、<strong>望ましい未来の臨場感を現在の現実より高くし、その未来を新たな TCZ として再構成すること</strong>である。</p>
+  <p class="mt8 sm">この命題には基礎理論を超える二つの追加要素が含まれている。第一に、「臨場感」という概念は元論文の評価関数 $V(x,t)$ のみでは捉えきれない。人間は不快を避けるだけではなく、リアルに感じられる世界へ移動する。第二に、「自己」変革という観点は、軍事文脈における「対象集団の操作」とは反対の方向性を持つ。本論文ではこの二つの差異を数理的に定式化する。</p>
+</div>
+</div><!-- end #intro -->
+
+
+<!-- ════════════════════════════════════════════════
+     第 I 部 — 基盤理論（定理1〜3）
+════════════════════════════════════════════════ -->
+<div id="part1">
+<div class="pt-hd">
+  <h2>第 I 部　基盤理論</h2>
+  <div class="sub">認知ホメオスタシスと安定性の理論（定理1〜3）</div>
+</div>
+</div>
+
+<!-- ── 2. 認知ホメオスタシス・TCZ・Self・Ego ── -->
+<div id="tcz">
+<div class="stitle">2. 認知ホメオスタシス・TCZ・Self・Ego</div>
+<div class="card">
+  <p>本節は、基礎理論や関連論文を先に読んでいない読者でも本論文を単独で理解できるように、基盤概念を整理する。中心となる概念は、<strong>認知状態・評価関数・Total Comfort Zone（TCZ）・Self / Ego 演算子・Ego の最適制御方程式</strong>である。定理1〜3およびその後の時間論・宇宙論・進化論に必要な内容は、外部資料への参照なしに本論文中で自足的に与える。</p>
+</div>
+
+<!-- §2.1 認知状態 -->
+<div class="stitle">§2.1　認知状態 $x(t)$ — 状態空間内を運動する一つの点</div>
+<div class="def">
+  <div class="def-t">Definition — 認知状態</div>
+  <div class="fml fml-bl" style="margin:6px 0">
+    $$x(t) \in X$$
+  </div>
+  <p class="sm">認知状態には、信念・感情・記憶・自己像・未来予測・身体感覚・社会的認識・目標・価値観が含まれる。これは単一の信念や一時的な感情ではなく、その時点における主体の内部世界全体の構成である。</p>
+</div>
+
+<!-- §2.1 認知状態空間図 ─ x(t) が状態空間内を運動する一つの点 -->
+<div class="fig-wrap">
+<svg viewBox="0 0 360 228" xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-label="認知状態 x(t) — 状態空間内を運動する一つの点">
+  <defs>
+    <!-- ティール矢印：次元ラベル用 -->
+    <marker id="arrDim21" viewBox="0 0 10 10" refX="8" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" style="fill:var(--xt-dim)"/>
+    </marker>
+    <!-- グレー矢印：時間軌道用 -->
+    <marker id="arrTrj21" viewBox="0 0 10 10" refX="8" refY="5"
+            markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" style="fill:var(--tx2)"/>
+    </marker>
+  </defs>
+
+  <!-- ── 認知状態空間の枠 ── -->
+  <rect x="8" y="8" width="344" height="200" rx="8"
+        style="fill:var(--c1t);stroke:var(--bdr)" stroke-width="1.5"/>
+  <text x="18" y="27" style="fill:var(--c1e)"
+        font-size="10" font-weight="800">認知状態空間 X（主体の内部世界全体）</text>
+
+  <!-- ── 時間軌道：過去 → 現在 → 将来（破線） ── -->
+  <line x1="36" y1="184" x2="316" y2="100"
+        style="stroke:var(--tx3)" stroke-width="1.5"
+        stroke-dasharray="5 3" marker-end="url(#arrTrj21)"/>
+
+  <!-- 過去(t-2) -->
+  <circle cx="36" cy="184" r="4" style="fill:var(--tx3)"/>
+  <text x="36" y="200" style="fill:var(--tx3)"
+        font-size="8.5" text-anchor="middle">過去 (t-2)</text>
+
+  <!-- 過去(t-1) -->
+  <circle cx="115" cy="161" r="5.5" style="fill:var(--tx3)"/>
+  <text x="115" y="177" style="fill:var(--tx3)"
+        font-size="8.5" text-anchor="middle">過去 (t-1)</text>
+
+  <!-- 現在の認知状態 x(t) ─ 大きな Klein Blue 点 -->
+  <circle cx="215" cy="131" r="13" style="fill:var(--c1)"/>
+  <text x="215" y="157" style="fill:var(--c1e)"
+        font-size="10.5" font-weight="800" text-anchor="middle">x(t)：現在の認知状態</text>
+
+  <!-- 将来(t+1) ラベル -->
+  <text x="300" y="96" style="fill:var(--tx2)" font-size="9">将来 (t+1)</text>
+
+  <!-- ── 次元ラベルへのティール矢印 ── -->
+  <!-- 信念 -->
+  <line x1="204" y1="120" x2="110" y2="64"
+        style="stroke:var(--xt-dim)" stroke-width="1.8"
+        marker-end="url(#arrDim21)"/>
+  <!-- 感情 -->
+  <line x1="210" y1="118" x2="184" y2="49"
+        style="stroke:var(--xt-dim)" stroke-width="1.8"
+        marker-end="url(#arrDim21)"/>
+  <!-- 自己像 -->
+  <line x1="224" y1="120" x2="278" y2="57"
+        style="stroke:var(--xt-dim)" stroke-width="1.8"
+        marker-end="url(#arrDim21)"/>
+
+  <!-- ── 次元ラベルボックス ── -->
+  <!-- 信念 -->
+  <rect x="74" y="44" width="42" height="22" rx="4"
+        style="fill:var(--card);stroke:var(--xt-dim)" stroke-width="1.5"/>
+  <text x="95" y="59" style="fill:var(--xt-dim)"
+        font-size="11" font-weight="700" text-anchor="middle">信念</text>
+
+  <!-- 感情 -->
+  <rect x="161" y="28" width="42" height="22" rx="4"
+        style="fill:var(--card);stroke:var(--xt-dim)" stroke-width="1.5"/>
+  <text x="182" y="43" style="fill:var(--xt-dim)"
+        font-size="11" font-weight="700" text-anchor="middle">感情</text>
+
+  <!-- 自己像 -->
+  <rect x="257" y="36" width="52" height="22" rx="4"
+        style="fill:var(--card);stroke:var(--xt-dim)" stroke-width="1.5"/>
+  <text x="283" y="51" style="fill:var(--xt-dim)"
+        font-size="11" font-weight="700" text-anchor="middle">自己像</text>
+</svg>
+<div class="fig-cap">主体の内部状態全体を状態空間内の一点として表す。時間発展は軌道を描く。</div>
+</div>
+
+
+<!-- §2.1 評価関数 -->
+<div class="stitle">§2.1　評価関数 $V(x,t)$ — 各認知状態の評価コストの大きさ</div>
+<div class="def">
+  <div class="def-t">Definition — 評価関数</div>
+  <div class="fml fml-bl" style="margin:6px 0">
+    $$V(x,t) \ge 0$$
+  </div>
+  <p class="sm">これは、認知状態 $x$ が時刻 $t$ において主体に与える不安定性・不快・内部不整合・評価コストを表す。値が大きいほど、その状態は主体にとって不安定であり、長く維持しにくい。基礎理論との連続性を保つため、評価関数を $V$ と表記する。</p>
+</div>
+
+<table class="vtbl">
+  <tr><th>記号</th><th>意味</th></tr>
+  <tr><td class="vs">$x(t)$</td><td>時刻 $t$ における認知状態</td></tr>
+  <tr><td class="vs">$x$</td><td>認知状態または状態変数</td></tr>
+  <tr><td class="vs">$X$</td><td>認知状態全体の空間</td></tr>
+  <tr><td class="vs">$t$</td><td>時刻または現在時刻</td></tr>
+  <tr><td class="vs">$T$</td><td>制御問題の終端時刻</td></tr>
+  <tr><td class="vs">$V$</td><td>評価ポテンシャル。不安定性・不快・評価コスト</td></tr>
+</table>
+
+<div class="fig-wrap">
+  <svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="評価関数 V(x,t) — 各認知状態の評価コストの大きさ">
+    
+    <line x1="40" y1="180" x2="340" y2="180" style="stroke:var(--tx3)" stroke-width="1.2"/>
+    <line x1="40" y1="180" x2="40" y2="30" style="stroke:var(--tx3)" stroke-width="1.2"/>
+    
+    <text x="35" y="105" class="v-func-axis" text-anchor="end">評価コスト V</text>
+    <text x="190" y="208" class="v-func-axis" text-anchor="middle">認知状態 x</text>
+    <text x="340" y="172" class="v-func-axis" text-anchor="end">V ≥ 0 : 評価コストは非負である</text>
+    
+    <text x="50" y="50" class="v-func-title">高い V = 不安定・不快・内部不整合が大きい</text>
+    
+    <path d="M 45 70 Q 190 260 335 70" style="fill:none;stroke:var(--c1)" stroke-width="2.5"/>
+    
+    <circle cx="190" cy="165" r="4.5" class="v-func-green"/>
+    <line x1="145" y1="180" x2="235" y2="180" style="stroke:#388e3c" stroke-width="1"/>
+    <text x="190" y="184" class="v-func-green-tx">低い V (安定状態)</text>
+
+    <circle cx="280" cy="115" r="4.5" class="v-func-red"/>
+    <text x="280" y="105" class="v-func-red-tx">高い V (不安定状態)</text>
+    
+  </svg>
+  <div class="fig-cap">§2.1 評価関数 V(x,t)：各認知状態の評価コストの大きさ</div>
+</div>
+
+  <div class="fig-cap">と表す。これは、認知状態 x が時刻 t において主体に与える不安定性・不快・内部不整合・評価コストを表す。値が大きいほど、その状態は主体にとって不安定であり、長く維持しにくい。本論文では 基礎理論との連続性を保つた
+め、評価関数を V と表記する。
+</div>
+</div>
+
+
+<!-- TCZ 状態空間定義 -->
+<div class="stitle">§2.2　Total Comfort Zone — 評価コストが閾値 $\theta$ 以下の安定領域</div>
+<div class="thm t2">
+  <div class="thm-label lb2">Definition — TCZ の状態空間定義</div>
+  <p class="sm">初期状態 $x_0$ からの到達可能集合を $\mathcal{R}(t; x_0)$、許容閾値を $\theta$ とすると、Total Comfort Zone は次のように定義される。</p>
+  <div class="fml fml-bl">
+    $$\text{TCZ}(x_0) \;=\; \bigcup_{t \ge 0} \Bigl\{\, x(t) \in \mathcal{R}(t; x_0) \;\Big|\; V\bigl(x(t), t\bigr) \le \theta \,\Bigr\}$$
+  </div>
+  <p class="sm">すなわち TCZ とは、主体が現在状態から<strong>到達可能</strong>であり、かつ<strong>認知的安定性を保てる</strong>状態の集合である。</p>
+</div>
+
+<table class="vtbl">
+  <tr><th>記号</th><th>意味</th></tr>
+  <tr><td class="vs">$x_0$</td><td>初期認知状態</td></tr>
+  <tr><td class="vs">$\Omega_\theta$</td><td>ポテンシャルが閾値 $\theta$ 以下となる安定集合</td></tr>
+  <tr><td class="vs">$\theta$</td><td>安定性の許容閾値</td></tr>
+  <tr><td class="vs">$\text{TCZ}$</td><td>Total Comfort Zone。認知的安定領域</td></tr>
+  <tr><td class="vs">$\mathcal{R}$</td><td>初期状態から到達可能な集合</td></tr>
+</table>
+
+<div class="fig-wrap">
+  <svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Total Comfort Zone — 評価コストが閾値 θ 以下の安定領域">
+    
+    <defs>
+      <clipPath id="tcz-clip">
+        <rect x="0" y="130" width="420" height="100"/>
+      </clipPath>
+    </defs>
+
+    <text x="210" y="20" fill="var(--c1e)" font-size="12" font-weight="800" text-anchor="middle">§ 2.2 Total Comfort Zone — 評価コストが閾値 θ 以下の安定領域</text>
+
+    <path d="M 50 60 Q 210 290 370 60 L 370 0 L 50 0 Z" class="v-tcz-fill" clip-path="url(#tcz-clip)"/>
+
+    <line x1="50" y1="130" x2="390" y2="130" class="v-tcz-dash" />
+    <text x="390" y="124" fill="var(--tx3)" font-size="9.5" font-weight="700" text-anchor="end">θ (安定性の許容閾値)</text>
+
+    <path d="M 50 60 Q 210 290 370 60" class="v-tcz-curve"/>
+
+    <line x1="50" y1="200" x2="390" y2="200" class="v-tcz-axis"/>
+    <line x1="50" y1="200" x2="50" y2="40" class="v-tcz-axis"/>
+    
+    <text x="45" y="115" class="v-tcz-text-axis" text-anchor="end">評価コスト V</text>
+    <text x="210" y="222" class="v-tcz-text-axis" text-anchor="middle">認知状態 x</text>
+
+    <text x="210" y="146" class="v-tcz-text-inner">TCZ = V(x,t) ≤ θ を満たす状態の集合</text>
+
+    <circle cx="210" cy="170" r="4.5" fill="var(--c1)"/>
+    <text x="210" y="188" fill="var(--c1e)" font-size="11" font-weight="800" text-anchor="middle">TCZ</text>
+
+    <circle cx="322" cy="111" r="4.5" fill="#d32f2f"/>
+    <text x="322" y="100" class="v-tcz-text-red">境界の外部 : V &gt; θ (不安定)</text>
+
+    <text x="58" y="188" class="v-tcz-text-note">境界の外へ出ると安定領域へ引き戻される</text>
+
+  </svg>
+  
+  <div class="fig-cap">
+安定領域・アトラクター盆地・可視性境界・自己同一性フレームとしての TCZ<br><br>
+</div>
+
+
+
+<!-- TCZ four meanings -->
+<div class="stitle">安定領域・アトラクター盆地・可視性境界・自己同一性フレームとしての TCZ</div>
+<div class="card">
+  <p>TCZ は単なる「快適な気分」を意味しない。本理論において、TCZ は少なくとも四つの意味を同時に持つ。</p>
+</div>
+
+<div class="fig-wrap">
+  <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Einstein 1901 と苫米地：同一原理">
+    
+    <defs>
+      <marker id="arrow-blue" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+        <polygon points="0 0, 6 3, 0 6" fill="#1976D2" />
+      </marker>
+      <marker id="arrow-blue-start" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto">
+        <polygon points="6 0, 6 6, 0 3" fill="#1976D2" />
+      </marker>
+      <marker id="arrow-red" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+        <polygon points="0 0, 6 3, 0 6" fill="#d32f2f" />
+      </marker>
+
+      <radialGradient id="sphere-blue" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#64B5F6"/>
+        <stop offset="100%" stop-color="#1565C0"/>
+      </radialGradient>
+      <radialGradient id="sphere-red" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#ef5350"/>
+        <stop offset="100%" stop-color="#c62828"/>
+      </radialGradient>
+      <radialGradient id="sphere-white-blue" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="100%" stop-color="#bbdefb"/>
+      </radialGradient>
+      <radialGradient id="sphere-white-red" cx="30%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#ffffff"/>
+        <stop offset="100%" stop-color="#ffcdd2"/>
+      </radialGradient>
+      
+
+    </defs>
+
+<rect x="10" y="10" width="280" height="300" rx="10" fill="#e1f5fe" />
+<rect x="310" y="10" width="280" height="300" rx="10" fill="#ffebee" />
+
+    
+    <rect x="10" y="10" width="580" height="300" rx="10" fill="none" stroke="var(--bdr)" stroke-width="1" />
+
+    <text x="150" y="45" class="v-dual-title-phys">Physical <tspan fill="#64B5F6" font-style="italic">(Einstein)</tspan></text>
+    <line x1="40" y1="55" x2="260" y2="55" stroke="#bbdefb" stroke-width="2"/>
+    <text x="150" y="75" class="v-dual-subtitle">Spatial Accumulation</text>
+
+    <circle cx="150" cy="170" r="22" fill="url(#sphere-blue)"/>
+    <circle cx="65" cy="120" r="10" fill="url(#sphere-blue)"/>
+    <circle cx="100" cy="90" r="10" fill="url(#sphere-blue)"/>
+    <circle cx="150" cy="80" r="10" fill="url(#sphere-blue)"/>
+    <circle cx="200" cy="90" r="10" fill="url(#sphere-blue)"/>
+    <circle cx="235" cy="120" r="10" fill="url(#sphere-blue)"/>
+    
+    <line x1="75" y1="130" x2="130" y2="155" class="v-dual-arrow-blue"/>
+    <line x1="110" y1="105" x2="138" y2="148" class="v-dual-arrow-blue"/>
+    <line x1="150" y1="95" x2="150" y2="140" class="v-dual-arrow-blue"/>
+    <line x1="190" y1="105" x2="162" y2="148" class="v-dual-arrow-blue"/>
+    <line x1="225" y1="130" x2="170" y2="155" class="v-dual-arrow-blue"/>
+
+    <text x="150" y="215" class="v-dual-text-blue">Stable Equilibrium</text>
+    <line x1="150" y1="225" x2="150" y2="245" class="v-dual-arrow-blue-single"/>
+    <text x="150" y="265" class="v-dual-subtitle">Adding in Space</text>
+    <line x1="150" y1="275" x2="150" y2="295" class="v-dual-arrow-blue-single"/>
+
+
+    <text x="300" y="155" class="v-dual-text-blue" font-size="11">Same Principle</text>
+    <line x1="260" y1="165" x2="340" y2="165" class="v-dual-arrow-blue-single"/>
+
+
+    <text x="450" y="45" class="v-dual-title-cog">Cognitive <tspan fill="#ef5350" font-style="italic">(Tomabechi)</tspan></text>
+    <line x1="340" y1="55" x2="560" y2="55" stroke="#ffcdd2" stroke-width="2"/>
+    <text x="450" y="75" class="v-dual-subtitle">Temporal Accumulation</text>
+
+    <line x1="350" y1="115" x2="550" y2="115" class="v-dual-arrow-red-single"/>
+    <text x="375" y="105" class="v-dual-text-blue" font-weight="500">Past</text>
+    <text x="435" y="105" class="v-dual-text-red" font-weight="500">Present</text>
+    <text x="500" y="105" class="v-dual-text-red" font-weight="500">Future</text>
+
+    <circle cx="375" cy="140" r="14" fill="url(#sphere-white-blue)" stroke="#1976D2" stroke-width="1.5"/>
+    <line x1="395" y1="140" x2="415" y2="140" class="v-dual-arrow-red-single"/>
+    
+    <circle cx="435" cy="140" r="14" fill="url(#sphere-white-red)" stroke="#d32f2f" stroke-width="1.5"/>
+    <line x1="455" y1="140" x2="475" y2="140" class="v-dual-arrow-red-single"/>
+    
+    <circle cx="495" cy="140" r="14" fill="url(#sphere-red)"/>
+    <line x1="515" y1="140" x2="535" y2="140" class="v-dual-arrow-red-single"/>
+    <circle cx="545" cy="140" r="14" fill="url(#sphere-red)"/>
+
+    <text x="450" y="195" class="v-dual-subtitle">Adding in Time</text>
+    <line x1="450" y1="205" x2="450" y2="225" class="v-dual-arrow-red-single"/>
+
+    <ellipse cx="450" cy="260" rx="70" ry="25" class="v-dual-tcz-box"/>
+    <ellipse cx="450" cy="260" rx="64" ry="19" fill="#e53935"/>
+    <text x="450" y="255" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">Total Comfort Zone</text>
+    <text x="450" y="270" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">(TCZ)</text>
+
+  </svg>
+  <div class="fig-cap">Einstein 1901 と苫米地：同一原理（空間的蓄積 vs 時間的蓄積）</div>
+</div>
+
+
+
+<table class="vtbl">
+  <tr><th>側面</th><th>数学的役割</th><th>日常的意味</th></tr>
+  <tr><td class="vs">安定領域</td><td>$V(x,t) \le \theta$ を満たす劣位集合</td><td>主体が過度の内部緊張なしに居られる範囲</td></tr>
+  <tr><td class="vs">アトラクター盆地</td><td>Ego の最小コスト軌道が戻っていく領域</td><td>努力しても自然に戻る「心の谷」</td></tr>
+  <tr><td class="vs">可視性境界</td><td>低コスト選択肢と高コスト・未表象選択肢を分ける境界</td><td>現在の Ego が「自分にも可能」と自然に見える範囲</td></tr>
+  <tr><td class="vs">自己同一性フレーム</td><td>現在の自己モデルと整合する状態集合</td><td>「これが自分」「これが自分の人生」と感じる世界</td></tr>
+</table>
+<div class="insight">
+  この四重の意味が、ゴール理論にとって決定的である。<strong>真のゴールは現在の TCZ の外側にある</strong>。つまり、現在のアトラクター盆地の外側、現在の可視性境界の外側、現在の自己同一性フレームの外側にある。だからこそ、真のゴールは現在の Ego には直接見えない。
+</div>
+
+<!-- Self/Ego optimal control -->
+<div class="stitle">§2.3　Self / Ego 演算子と最適制御</div>
+<div class="card">
+  <p>基礎理論に従い、<strong>Self は可能世界上の意味論的順序構造</strong>であり、<strong>Ego はその力学的実現</strong>である。Ego は最適制御問題として定式化される。</p>
+  <div class="fml fml-bl mt8">
+    $$\pi_c(x) \;=\; \arg\min_{u(t)} \int_0^T V\bigl(x(t), t\bigr)\, dt$$
+  </div>
+  <p class="sm mt8">$\pi_c(x)$ は認知制御方策である。これは任意の認知状態 $x$ を、累積する評価コストを最小化する行動または制御軌道 $u(t)$ へ写像する。下付き $c$ は cognitive（認知）を表し、物理的・道具的な制御方策と区別する。</p>
+</div>
+<table class="vtbl">
+  <tr><th>記号</th><th>意味</th></tr>
+  <tr><td class="vs">$u(t)$</td><td>制御入力または行動経路</td></tr>
+  <tr><td class="vs">$\pi_c$</td><td>Ego の認知制御方策</td></tr>
+  <tr><td class="vs">$\arg\min$</td><td>式を最小にする選択肢</td></tr>
+</table>
+
+<div class="costpath-wrap">
+
+<svg viewBox="0 0 470 260">
+
+    <!-- 軸 -->
+    <line class="cp-axis" x1="55" y1="25" x2="55" y2="210"/>
+    <line class="cp-axis" x1="55" y1="210" x2="430" y2="210"/>
+
+    <!-- 高コスト経路 -->
+    <path
+        class="cp-red"
+        d="
+        M90 175
+        C150 110 205 55 260 60
+        C320 65 355 130 410 175"/>
+
+    <!-- 低コスト経路 -->
+    <path
+        class="cp-blue"
+        d="
+        M90 175
+        C145 188 210 202 270 195
+        C330 188 365 183 410 175"/>
+
+    <!-- 始点 -->
+    <circle class="cp-start"
+            cx="90"
+            cy="175"
+            r="6"/>
+
+    <!-- 終点 -->
+    <circle class="cp-goal"
+            cx="410"
+            cy="175"
+            r="6"/>
+
+    <!-- ラベル -->
+
+    <text
+        class="cp-red-text"
+        x="250"
+        y="78"
+        text-anchor="middle">
+
+        経路A：高コスト経路（累積コスト大）
+
+    </text>
+
+    <text
+        class="cp-blue-text"
+        x="250"
+        y="223"
+        text-anchor="middle">
+
+        経路B：低コスト経路（累積コスト最小）
+
+    </text>
+
+    <text
+        class="cp-axis-text"
+        transform="rotate(-90 20 120)"
+        x="20"
+        y="120">
+
+        評価コスト V
+
+    </text>
+
+    <text
+        class="cp-axis-text"
+        x="108"
+        y="235">
+
+        認知状態 x
+
+    </text>
+
+    <text
+        class="cp-label"
+        x="108"
+        y="192">
+
+        認知状態
+
+    </text>
+
+    <text
+        class="cp-label"
+        x="386"
+        y="192">
+
+        目標状態
+
+    </text>
+
+</svg>
+
+<div class="vcost-wrap">
+
+<svg viewBox="0 0 420 270">
+
+    <!-- タイトル -->
+    <text
+        class="vcost-title"
+        x="210"
+        y="28">
+
+        経路ごとの累積評価コスト
+        ∫V dt
+
+    </text>
+
+    <!-- 経路A -->
+    <rect
+        class="vcost-red"
+        x="45"
+        y="60"
+        width="78"
+        height="170"
+        rx="2"/>
+
+    <!-- 経路B -->
+    <rect
+        class="vcost-blue"
+        x="245"
+        y="150"
+        width="78"
+        height="80"
+        rx="2"/>
+
+    <!-- 上ラベル -->
+    <text
+        class="vcost-red-text"
+        x="84"
+        y="48">
+
+        ∫V dt 大
+
+    </text>
+
+    <text
+        class="vcost-blue-text"
+        x="284"
+        y="138">
+
+        ∫V dt 最小
+
+    </text>
+
+    <!-- 下ラベル -->
+
+    <text
+        class="vcost-label"
+        x="84"
+        y="250">
+
+        経路A
+
+    </text>
+
+    <text
+        class="vcost-label"
+        x="284"
+        y="250">
+
+        経路B
+
+    </text>
+
+</svg>
+
+</div>
+
+</div>
+
+<!-- Five-step bridge -->
+<div class="stitle">§2.4　五ステップ橋渡し — 可能世界形式から制御方程式へ</div>
+<div class="card">
+  <p>本枠組みの数理的核心は、二つの記述が同じ認知過程を表していることにある。一方は<strong>可能世界・Self・TCZ</strong> という意味論的記述、もう一方は<strong>状態空間・最適制御・$\pi_c(x)$・最適軌道 $x^*(t)$</strong> という力学的記述である。両者の橋渡しは次の五ステップで整理される。</p>
+  
+  
+  
+  <div class="phi-wrap">
+
+<svg viewBox="0 0 760 320">
+
+<!-- 左タイトル -->
+<text x="150" y="35" class="phi-title" text-anchor="middle">
+可能世界
+</text>
+
+<text x="150" y="58" class="phi-sub" text-anchor="middle">
+（哲学的の言葉）
+</text>
+
+<!-- 左楕円 -->
+
+<ellipse
+cx="150"
+cy="180"
+rx="115"
+ry="90"
+class="phi-world"/>
+
+<!-- 内部の世界 -->
+
+<circle cx="110" cy="155" r="23" class="phi-small"/>
+<circle cx="185" cy="135" r="23" class="phi-small"/>
+<circle cx="125" cy="220" r="23" class="phi-small"/>
+<circle cx="205" cy="205" r="23" class="phi-small"/>
+
+<text
+x="150"
+y="295"
+class="phi-label"
+text-anchor="middle">
+
+自分らしい世界の集合
+
+</text>
+
+
+<!-- 中央 -->
+
+<text
+x="380"
+y="135"
+class="phi-red"
+text-anchor="middle">
+
+⇔
+
+</text>
+
+<text
+x="380"
+y="165"
+class="phi-label"
+text-anchor="middle">
+
+同じ一つの
+
+</text>
+
+<text
+x="380"
+y="186"
+class="phi-label"
+text-anchor="middle">
+
+心の事実
+
+</text>
+
+
+<!-- 右タイトル -->
+
+<text
+x="610"
+y="35"
+class="phi-title"
+text-anchor="middle">
+
+状態空間と谷
+
+</text>
+
+<text
+x="610"
+y="58"
+class="phi-sub"
+text-anchor="middle">
+
+(数学の言葉)
+
+</text>
+
+
+<!-- 座標 -->
+
+<line x1="505" y1="255" x2="705" y2="255" class="phi-axis"/>
+<line x1="520" y1="70" x2="520" y2="255" class="phi-axis"/>
+
+<!-- 谷 -->
+
+<path
+
+class="phi-curve"
+
+d="
+M530 95
+C560 150
+575 250
+610 250
+C645 250
+660 150
+690 95
+"/>
+
+<line
+x1="520"
+y1="210"
+x2="705"
+y2="210"
+class="phi-dash"/>
+
+<circle
+cx="610"
+cy="250"
+r="5"
+class="phi-dot"/>
+
+<text
+x="620"
+y="245"
+class="phi-red">
+
+TCZ
+
+</text>
+
+
+<text
+x="610"
+y="292"
+class="phi-label"
+text-anchor="middle">
+
+ざわつきが0以下の範囲
+
+</text>
+
+</svg>
+
+</div>
+  
+  
+  <ol class="steps mt8">
+    <li><span class="sn">1</span><div>認知は単一状態ではなく、可能世界の集合 $W$ 上に展開される。</div></li>
+    <li><span class="sn">2</span><div>順序づけ演算子 $r : W \to W$ が、認知的快適性に基づいて可能世界をランク付けする。</div></li>
+    <li><span class="sn">3</span><div>その順序づけのもとでの安定領域が Total Comfort Zone である。</div></li>
+    <li><span class="sn">4</span><div>Self / Ego は、TCZ の順序構造を選択または再編成する作用素として機能する。</div></li>
+    <li><span class="sn">5</span><div>状態空間において、この作用は最適制御問題 $\pi_c(x)$ として実装される。</div></li>
+  </ol>
+
+  
+  
+  <div class="rdnote mt8">
+    <div class="rdt">📖 出典について</div>
+    <div class="sm">この五ステップ橋渡しで用いる可能世界形式様相論理式、特に可能世界・Self・TCZ に関する意味論的定式化は、苫米地英人『オーセンティック・コーチング2026 ～本物のコーチング～』（2025）で扱われている。本論文は、その意味論的形式を、状態空間上の最適制御・Lyapunov 収束・未来原点認知時間の言語へ翻訳するものである。</div>
+  </div>
+</div>
+
+<!-- Possible-worlds TCZ definition -->
+<div class="stitle">可能世界形式における TCZ の論理的定義</div>
+<div class="fml fml-bl">
+  $$\text{TCZ} \;=\; \{\, w \in W \;\mid\; \forall y\; \exists x\;\; r_{\text{TCZ}}(x, y) \,\}, \qquad x, y \in W$$
+</div>
+<table class="vtbl">
+  <tr><th>記号</th><th>意味</th></tr>
+  <tr><td class="vs">$W$</td><td>可能世界の集合</td></tr>
+  <tr><td class="vs">$w$</td><td>一つの可能世界</td></tr>
+  <tr><td class="vs">$y$</td><td>可能世界記法における任意の状況・摂動</td></tr>
+  <tr><td class="vs">$r_{\text{TCZ}}$</td><td>TCZ 内の安定化関係</td></tr>
+  <tr><td class="vs">$\forall$</td><td>すべての</td></tr>
+  <tr><td class="vs">$\exists$</td><td>存在する</td></tr>
+</table>
+<div class="note">
+  ここで $r_{\text{TCZ}}(x, y)$ は TCZ 内での安定化関係を表す。式の意味は、「<strong>どんな状況 $y$ が来ても、安定地点へ戻る応答 $x$ が必ず存在する世界の集まり</strong>」である。これは心理的レジリエンスの数学的表現である。
+</div>
+
+<!-- Self/Ego duality -->
+<div class="stitle">Self / Ego 演算子の双対性</div>
+<div class="fml fml-bl">
+  $$\{\, w \in W \;\mid\; \forall y\; \exists x\;\; s_{\text{Self}}(x, y) \,\}, \qquad s : \text{TCZ} \to \text{TCZ}'$$
+</div>
+<table class="vtbl">
+  <tr><th>記号</th><th>意味</th></tr>
+  <tr><td class="vs">$s_{\text{Self}}$</td><td>TCZ 構造を選択・変換する Self 演算子</td></tr>
+  <tr><td class="vs">$f(x,u,t)$</td><td>制御 $u$ のもとでの状態ダイナミクス</td></tr>
+</table>
+<div class="card">
+  <p>Self は二つの様式で機能する。</p>
+  <ul class="blist mt8">
+    <li><strong>選択モード：</strong>可能世界の中から望ましい TCZ を選択する。</li>
+    <li><strong>変換モード：</strong>写像 $s : \text{TCZ} \to \text{TCZ}'$ によって TCZ そのものを変換・再構成する。</li>
+  </ul>
+  <p class="mt8">第二の作用が決定的である。<strong>自己変革とは、コンフォートゾーン内の移動ではなく、コンフォートゾーンそのものの移行である</strong>。Ego は、この Self の作用を状態空間における制御方程式として実現する。様相論理上の Self が可能世界の言語で望ましい領域を定義するのに対し、Ego はその領域へ向かう軌道を制御方程式として実装する。</p>
+</div>
+
+<!-- Equivalence summary -->
+<div class="stitle">同値性のまとめ</div>
+<table class="vtbl">
+  <tr><th>意味論的記述</th><th></th><th>力学的記述</th></tr>
+  <tr><td>可能世界</td><td class="vs">⇔</td><td>状態空間における軌道</td></tr>
+  <tr><td>順序関係 $r$</td><td class="vs">⇔</td><td>評価関数 $V(x,t)$</td></tr>
+  <tr><td>安定化応答の存在</td><td class="vs">⇔</td><td>安定領域内に留まる軌道の存在</td></tr>
+  <tr><td>Self の選択モード</td><td class="vs">⇔</td><td>可能世界の評価</td></tr>
+  <tr><td>Self の変換モード</td><td class="vs">⇔</td><td>制御方策による TCZ 再編成</td></tr>
+</table>
+<div class="note">この同値性により、Self・Ego・TCZ・ゴール・変革といった概念について、数学的定理を立てることが可能になる。</div>
+</div><!-- end #tcz -->
+
+
+<!-- ════════════════════════════════════════════════
+     定理 1・2・3
+════════════════════════════════════════════════ -->
+<div id="thm">
+<div class="pt-hd">
+  <h2>主定理＝定理1 ／ 定理1・2・3</h2>
+  <div class="sub">Self・Ego・TCZ 統一 ─ 苫米地統一定理</div>
+</div>
+
+<!-- Unification formula = Theorem 1 -->
+<div class="thm t1">
+  <div class="thm-label lb1">UNIFICATION FORMULA — 苫米地統一定理（定理1の前段）</div>
+  <div class="fml fml-bl" style="margin:6px 0">
+    $$\pi_c(x) = \arg\min_{u(t)} \int_0^T V\bigl(x(t), t\bigr)\, dt \;\Longrightarrow\; x^*(t) \to \text{TCZ}(x_0)$$
+  </div>
+  <p class="sm">可能世界 $W$ 上の Self 演算子が、状態空間において制御問題 $\pi_c(x)$ として実装されるとき、最適軌道 $x^*(t)$ は $\text{TCZ}(x_0)$ 内に収束する。</p>
+</div>
+<table class="vtbl">
+  <tr><th>記号</th><th>意味</th></tr>
+  <tr><td class="vs">Self</td><td>可能世界 $W$ 上で望ましい領域を選択・変換する意味論的作用素</td></tr>
+  <tr><td class="vs">Ego</td><td>状態空間上で累積評価コストを最小化する制御過程</td></tr>
+  <tr><td class="vs">$\text{TCZ}(x_0)$</td><td>初期状態 $x_0$ から到達可能で、評価コストが閾値以下に保たれる認知的安定領域</td></tr>
+  <tr><td class="vs">$\pi_c(x)$</td><td>Ego の認知制御方策。累積評価コストを最小化する制御を選ぶ</td></tr>
+  <tr><td class="vs">$V(x(t),t)$</td><td>評価関数。認知的不安定性・不快・内部不整合・評価コスト</td></tr>
+  <tr><td class="vs">$x^*(t)$</td><td>制御方策 $\pi_c$ によって生成される最適認知軌道</td></tr>
+</table>
+
+<div class="stitle">§2.5　主定理：三位一体</div>
+<div class="card">
+  <p>主定理とは、定理体系の外側に置かれる別の定理ではなく、<strong>定理1そのもの</strong>である。可能世界の言語では Self は望ましい領域を選択し必要なら TCZ そのものを変換する作用素であり、制御理論の言語では Ego は累積評価コストを最小化する制御方策であり、力学系の言語では TCZ はその最適軌道が収束する安定領域である。</p>
+  <p class="mt8">したがって、<strong>Self、Ego、TCZ は三つの別物ではない</strong>。同一の認知プロセスを、哲学・工学・心理学という三つの異なる言語で描いたものである。この統一により、自己・コンフォートゾーン・ゴール・認知変容といった概念が、比喩ではなく制御系として厳密に実装可能な数理対象となる。</p>
+</div>
+
+<!-- Theorem 1 -->
+<div class="stitle">定理1 — 個人 TCZ 収束</div>
+<div class="thm t1">
+  <div class="thm-label lb1">Theorem 1 — 苫米地主定理</div>
+  <div class="fml fml-bl" style="margin:6px 0">
+    $$\pi_c(x) = \arg\min_{u(t)} \int_0^T V\bigl(x(t), t\bigr)\, dt \;\Longrightarrow\; x^*(t) \to \text{TCZ}(x_0)$$
+  </div>
+  <p class="sm">主体の Ego が累積評価コストを最小化する制御方策として実装されるなら、適切な正則条件および Lyapunov 下降条件のもとで、最適軌道は初期状態から到達可能な TCZ へ収束する。</p>
+</div>
+<table class="vtbl">
+  <tr><th>記号</th><th>説明</th></tr>
+  <tr><td class="vs">$\arg\min_{u(t)}$</td><td>制御入力 $u(t)$ の中から、右側の積分値を最小にするものを選ぶ演算</td></tr>
+  <tr><td class="vs">$\int_0^T$</td><td>時刻 0 から終端時刻 $T$ までの累積。瞬間的な不快ではなく、時間全体の評価コストを見る</td></tr>
+  <tr><td class="vs">$\Longrightarrow$</td><td>前半の最適制御構造が成立すると、後半の収束結論が従うことを示す</td></tr>
+</table>
+
+<!-- Theorem 2 -->
+<div class="stitle">定理2 — Shared-TCZ 収束</div>
+<div class="thm t2">
+  <div class="thm-label lb2">Theorem 2 — 苫米地共有TCZ収束定理</div>
+  <div class="fml fml-bl" style="margin:6px 0">
+    $$\pi_i = \arg\min_{u_i(t)} \int_0^T \Bigl( V_i\bigl(x_i(t), t\bigr) + \sum_j \gamma_{ij}\, S_{ij}(x_i, x_j) \Bigr) dt \;\Longrightarrow\; x^*(t) \to \text{TCZ}_{\text{shared}}$$
+  </div>
+  <p class="sm">複数主体が個人の不安定性と主体間の不整合を同時に下げる制御方策に従うなら、結合軌道は共有安定領域へ収束する。</p>
+</div>
+<table class="vtbl">
+  <tr><th>記号</th><th>説明</th></tr>
+  <tr><td class="vs">$\pi_i$</td><td>主体 $i$ の認知制御方策。自分の安定性と他者との整合性を同時に最適化する</td></tr>
+  <tr><td class="vs">$u_i(t)$</td><td>主体 $i$ の時刻 $t$ における制御入力</td></tr>
+  <tr><td class="vs">$x_i(t),\,x_j(t)$</td><td>主体 $i,\,j$ の認知状態</td></tr>
+  <tr><td class="vs">$V_i(x_i(t),t)$</td><td>主体 $i$ の個人的な評価的不安定性・内部コスト</td></tr>
+  <tr><td class="vs">$S_{ij}(x_i,x_j)$</td><td>主体 $i$ と $j$ の認知的ズレ・不整合。典型例は $\lVert x_i - x_j \rVert^2$</td></tr>
+  <tr><td class="vs">$\gamma_{ij}$</td><td>主体 $j$ が主体 $i$ に与える社会的認知結合の強さ</td></tr>
+  <tr><td class="vs">$\sum_j$</td><td>主体 $i$ に関係する他者 $j$ についての合計</td></tr>
+  <tr><td class="vs">$\text{TCZ}_{\text{shared}}$</td><td>複数主体が同時に安定していられる共有安定領域</td></tr>
+</table>
+
+<!-- Theorem 3 -->
+<div class="stitle">定理3 — LUB / 高抽象収束</div>
+<div class="thm t3">
+  <div class="thm-label lb3">Theorem 3 — 苫米地抽象的共有TCZ収束定理</div>
+  <div class="fml fml-bl" style="margin:6px 0">
+    $$\pi_i = \arg\min_{u_i(t)} \mathbb{E} \int_0^T \Bigl( V_i + \sum_j \gamma_{ij} S_{ij} + \eta_i\, A(x_i(t)) \Bigr) dt$$
+    $$A(x) = 0 \iff \varphi(x) = \text{LUB}(W_1, \dots, W_N) \;\Longrightarrow\; x^*(t) \to \text{LUB}(W_1, \dots, W_N)$$
+  </div>
+  <p class="sm">共有安定性に抽象ポテンシャルを加えると、系は低次の共通部分ではなく、複数世界を包摂する最小上界へ収束する。</p>
+</div>
+<table class="vtbl">
+  <tr><th>記号</th><th>説明</th></tr>
+  <tr><td class="vs">$\mathbb{E}$</td><td>期待値。不確実性がある場合にも平均的に評価コストを最小化することを示す</td></tr>
+  <tr><td class="vs">$V_i$</td><td>主体 $i$ の個人的評価コスト</td></tr>
+  <tr><td class="vs">$S_{ij},\,\gamma_{ij}$</td><td>主体間の認知的ズレと、そのズレに対する社会的結合の重み</td></tr>
+  <tr><td class="vs">$A(x_i(t))$</td><td>抽象ポテンシャル。主体 $i$ の状態が目標 LUB からどれだけ離れているかを測る</td></tr>
+  <tr><td class="vs">$\eta_i$</td><td>抽象ポテンシャルをどれだけ重視するかを表す正の重み</td></tr>
+  <tr><td class="vs">$\varphi(x)$</td><td>認知状態を概念・可能世界の束へ写す抽象写像</td></tr>
+  <tr><td class="vs">$W_1,\dots,W_N$</td><td>統合される複数の認知世界・立場・意味世界</td></tr>
+  <tr><td class="vs">$\text{LUB}(W_1,\dots,W_N)$</td><td>複数世界をすべて包摂する最小上界。違いを消すのではなく高次で含む概念</td></tr>
+  <tr><td class="vs">$A(x){=}0 \Leftrightarrow$<br>$\varphi(x){=}\text{LUB}$</td><td>抽象ポテンシャルがゼロになることと、状態が目標 LUB に到達していることが同値という設計条件</td></tr>
+</table>
+
+<!-- Theorems 1-3 summary table -->
+<div class="stitle">一覧表 — 定理1〜3</div>
+<table class="thm-tbl">
+  <tr><th>定理</th><th>中心式</th><th>主な変数</th><th>意味</th></tr>
+  <tr>
+    <td class="vs">定理1<br>個人TCZ</td>
+    <td>$\pi_c = \arg\min \int_0^T V\,dt$ $\Rightarrow x^*(t) \to \text{TCZ}(x_0)$</td>
+    <td>$V$：不安定性<br>TCZ：安定領域<br>$\pi_c$：Ego 方策</td>
+    <td>Ego は個人を現在の安定領域へ戻す</td>
+  </tr>
+  <tr>
+    <td class="vs">定理2<br>Shared-TCZ</td>
+    <td>$\pi_i = \arg\min \int_0^T (V_i + \sum_j \gamma_{ij} S_{ij})\,dt$ $\Rightarrow x^*(t) \to \text{TCZ}_{\text{shared}}$</td>
+    <td>$S_{ij}$：不整合<br>$\gamma_{ij}$：結合</td>
+    <td>結合された人々は共有安定領域へ収束する</td>
+  </tr>
+  <tr>
+    <td class="vs">定理3<br>LUB</td>
+    <td>$\pi_i = \arg\min \mathbb{E}\int_0^T (V_i + \sum_j \gamma_{ij} S_{ij} + \eta_i A)\,dt$, $A{=}0 \Leftrightarrow \varphi(x){=}\text{LUB}$</td>
+    <td>$A$：抽象ポテンシャル<br>$\varphi$：抽象写像<br>LUB：最小上界</td>
+    <td>集団は低次共通性から高次共有目的へ上昇しうる</td>
+  </tr>
+</table>
+<div class="note">この表は、本論文が直接継承する数理体系である。真のゴールは現在の TCZ の外側にある（定理1）。それは社会的に見える化・共有化される必要がありうる（定理2）。しばしば高次 LUB を必要とする（定理3）。</div>
+</div><!-- end #thm -->
+
+
+<!-- ════════════════════════════════════════════════
+     3. 核心的直観
+════════════════════════════════════════════════ -->
+<div id="intuition">
+<div class="pt-hd">
+  <h2>3. 核心的直観</h2>
+  <div class="sub">未来原点認知時間 ・ 二つのエントロピー</div>
+</div>
+
+<div class="card">
+  <p>通常の行動理論は、人間が<strong>過去によって前方へ押される</strong>と考えがちである。過去経験・トラウマ・報酬・習慣・条件づけによって行動する、と。それらの要因は重要である。しかし苫米地フレームワークでは、それは自己変革の最深の説明ではない。問うべきは「何が現在を生んだか」だけではなく、<strong>「どの未来が現在を組織するほどリアルになったか」</strong>である。</p>
+  <p class="mt8">現在の Ego は通常、蓄積される評価コストを最小化するため、主体を現在の TCZ へ戻す。これは、変わりたいという意識だけでは不十分である理由を説明する。望ましい未来が現在の TCZ の外にある限り、現在の Ego は自然にはそこへ向かわない。その未来は現在の評価地形から見ると、コストが高く、不安定で、リアルでなく、「自分の世界ではない」からである。</p>
+  <p class="mt8">真のゴールは、計画・タスク・願望・改善目標・予測とは異なる。タスクは現在の TCZ の<strong>内側</strong>にある。真のゴールはその<strong>外側</strong>にある。だからこそ現在の Ego には低コストの選択肢として直接は見えない。しかし Self がそのゴールを Ego の制御問題の<strong>終端条件</strong>として設定すると、現在の行動は未来によって組織され始める。これが未来原点認知時間の数学的意味である。</p>
+</div>
+
+<div class="insight">
+  <p class="bold">未来原点認知時間の本質</p>
+  <p class="mt8" style="font-size:15px">未来のゴールが現在の Ego を制御し、現在の Ego が過去の意味を再構成する。</p>
+</div>
+
+<!-- Two entropies -->
+<div class="stitle">物理エントロピーと認知・情報エントロピー</div>
+<div class="card">
+  <p>物理時間と認知時間の違いは、エントロピーの観点から理解しやすい。孤立物理系においてエントロピーは時間とともに増大する。壊れたコップは自然には元に戻らず、熱は拡散し、局所的秩序は外部から仕事を加えない限り散逸していく。これが物理時間のよく知られた矢である。</p>
+  <p class="mt8">しかし認知・情報空間では、異なる構造が現れる。認知において高い抽象へ上がるとは、散らばった多数の細部を、より少数の統合的な意味の下に圧縮することである。LUB への移動はまさにこの運動である。低次の多数の区別が高次の概念の下に統合される。苫米地フレームワークの記法では、これは次のように表される。</p>
+  <div class="fml fml-pk mt8">
+    $$\text{抽象度} \uparrow \;\iff\; \text{情報量} \downarrow \;\iff\; \text{意味的エントロピー} \downarrow$$
+  </div>
+</div>
+
+<!-- Two entropies SVG -->
+<div class="fig-wrap">
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two entropies diagram">
+  <defs>
+    <marker id="arrUp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" style="fill:var(--c1)"/>
+    </marker>
+    <marker id="arrDn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" style="fill:var(--c2)"/>
+    </marker>
+  </defs>
+  <!-- left panel: physical -->
+  <text x="80" y="18" style="fill:var(--c1e)" font-size="11" font-weight="700" text-anchor="middle">物理空間</text>
+  <line x1="25" y1="170" x2="150" y2="170" style="stroke:var(--tx3)" stroke-width="1"/>
+  <line x1="25" y1="170" x2="25" y2="35" style="stroke:var(--tx3)" stroke-width="1"/>
+  <path d="M30,160 C70,150 110,90 140,45" style="fill:none;stroke:var(--c1)" stroke-width="2.5" marker-end="url(#arrUp)"/>
+  <text x="88" y="190" style="fill:var(--tx2)" font-size="9" text-anchor="middle">時間 →</text>
+  <text x="80" y="78" style="fill:var(--c1e)" font-size="9" text-anchor="middle">エントロピー↑</text>
+  <!-- right panel: cognitive -->
+  <text x="245" y="18" style="fill:var(--c2e)" font-size="11" font-weight="700" text-anchor="middle">認知・情報空間</text>
+  <line x1="185" y1="170" x2="310" y2="170" style="stroke:var(--tx3)" stroke-width="1"/>
+  <line x1="185" y1="170" x2="185" y2="35" style="stroke:var(--tx3)" stroke-width="1"/>
+  <path d="M190,50 C230,90 270,150 300,162" style="fill:none;stroke:var(--c2)" stroke-width="2.5" marker-end="url(#arrDn)"/>
+  <text x="248" y="190" style="fill:var(--tx2)" font-size="9" text-anchor="middle">時間（未来原点）→</text>
+  <text x="250" y="78" style="fill:var(--c2e)" font-size="9" text-anchor="middle">意味的エントロピー↓</text>
+</svg>
+<div class="fig-cap">図 — 物理空間ではエントロピーが増大し時間の矢を与える。認知・情報空間では未来ゴールが意味を組織し、意味的エントロピーが減少する。</div>
+</div>
+
+<div class="card">
+  <p>これは脳が熱力学に反しているという意味ではない。脳は物理系として熱力学の中にある。しかし、<strong>意味の情報幾何は物理エントロピーとは別の記述層</strong>を持つ。物理空間ではエントロピー増大が物理時間の矢を与える。認知・情報空間では、未来ゴールが意味を組織することにより意味的エントロピーが減少する。散らばった出来事は解釈可能になり、現在の選択は秩序づけられ、過去経験は未来との関係において一貫した役割を持つ。</p>
+</div>
+
+<!-- Abstraction pyramid -->
+<div class="stitle">§3.1　抽象度の上昇に伴い意味的エントロピーが減少する</div>
+<div class="fig-wrap">
+<svg viewBox="0 0 320 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Abstraction pyramid">
+  <!-- top -->
+  <rect x="125" y="25" width="70" height="32" rx="5" style="fill:var(--c1);stroke:var(--c1)"/>
+  <text x="160" y="45" style="fill:#fff" font-size="11" font-weight="700" text-anchor="middle">動物</text>
+  <!-- mid -->
+  <rect x="55" y="78" width="48" height="30" rx="4" style="fill:var(--c1t);stroke:var(--c1)"/>
+  <text x="79" y="97" style="fill:var(--c1e)" font-size="9.5" text-anchor="middle">犬</text>
+  <rect x="111" y="78" width="48" height="30" rx="4" style="fill:var(--c1t);stroke:var(--c1)"/>
+  <text x="135" y="97" style="fill:var(--c1e)" font-size="9.5" text-anchor="middle">猫</text>
+  <rect x="167" y="78" width="48" height="30" rx="4" style="fill:var(--c1t);stroke:var(--c1)"/>
+  <text x="191" y="97" style="fill:var(--c1e)" font-size="9.5" text-anchor="middle">鳥</text>
+  <rect x="223" y="78" width="48" height="30" rx="4" style="fill:var(--c1t);stroke:var(--c1)"/>
+  <text x="247" y="97" style="fill:var(--c1e)" font-size="9.5" text-anchor="middle">魚</text>
+  <!-- bottom row -->
+  <g style="fill:var(--card2);stroke:var(--bdr)">
+    <rect x="20" y="128" width="42" height="28" rx="3"/>
+    <rect x="68" y="128" width="42" height="28" rx="3"/>
+    <rect x="116" y="128" width="42" height="28" rx="3"/>
+    <rect x="164" y="128" width="42" height="28" rx="3"/>
+    <rect x="212" y="128" width="42" height="28" rx="3"/>
+    <rect x="260" y="128" width="42" height="28" rx="3"/>
+  </g>
+  <g style="fill:var(--tx2)" font-size="8" text-anchor="middle">
+    <text x="41" y="146">柴犬</text>
+    <text x="89" y="146">黒猫</text>
+    <text x="137" y="146">文鳥</text>
+    <text x="185" y="146">メダカ</text>
+    <text x="233" y="146">三毛猫</text>
+    <text x="281" y="146">金魚</text>
+  </g>
+  <!-- axis arrow -->
+  <text x="160" y="180" style="fill:var(--tx3)" font-size="9" text-anchor="middle">↑ 抽象度が上がるほど 区別＝意味的散らばり（エントロピー）が減る ↓</text>
+  <text x="160" y="198" style="fill:var(--c1e)" font-size="9" text-anchor="middle" font-weight="700">具体（散らばり大） → 抽象（散らばりゼロ）</text>
+</svg>
+<div class="fig-cap">図 — 最下層の多数の具体物が、一段上で四種に、さらに一段で「動物」という一つの意味へ収束する。抽象化とは散らかった世界を片づける操作である。</div>
+</div>
+</div><!-- end #intuition -->
+
+<!-- ════════════════════════════════════════════════
+     第 II 部 — 象徴文化生成と進化の理論
+════════════════════════════════════════════════ -->
+<div id="part2">
+<div class="pt-hd">
+  <h2>第 II 部　象徴文化生成と進化の理論</h2>
+  <div class="sub">最小連鎖 ─ 定理1・2・3 から象徴文化生成定理・進化定理へ</div>
+</div>
+<div class="card">
+  <p>定理1（苫米地主定理）・定理2（共有TCZ収束定理）・定理3（抽象的共有TCZ収束定理）は、認知のホメオスタシス的収束・共有・高次化という基盤を確立する。これらの基盤から、次に問うべきことは、<strong>その高次抽象世界がどのように社会的現実となり歴史的に継承されるか（象徴文化生成定理）</strong>、そして<strong>その能力がどのように進化的に選択されるか（進化定理）</strong>である。この最小連鎖こそが本論文の核心である。</p>
+</div>
+</div>
+
+<!-- ── 4. 象徴文化生成定理 ── -->
+<div id="sym">
+<div class="stitle">4. 苫米地象徴文化生成定理</div>
+<div class="card">
+  <p>これまでの節では、認知時間が未来側 LUB-TCZ によって基準づけられ、抽象度が上がるほど意味的ランダム性が下がることを示した。次に問うべきは、その高抽象世界がどのように社会的現実となり、歴史的に継承されるかである。その役割を担うのが<strong>象徴文化</strong>である。芸術・音楽・文学・宗教・儀式・神話・法・物語は、認知の後に付け加えられた飾りではない。それらは<strong>高抽象を共有臨場感へ変換する機構</strong>である。</p>
+</div>
+
+<div class="thm t11">
+  <div class="thm-label lb11">Theorem 11 — 苫米地象徴文化生成定理</div>
+  <div class="fml fml-bl" style="margin:6px 0">
+    $$\pi_c^{\text{sym}} = \arg\min_{u(t)} \int_0^T P_{\text{sym}}\bigl(x(t), t\bigr)\, dt \;\Longrightarrow\; \frac{\partial \tilde{V}_\sigma}{\partial \sigma} < 0$$
+  </div>
+  <p class="sm">ここで</p>
+  <div class="fml fml-bl" style="margin:6px 0">
+    $$P_{\sigma,i}(x,t;C) = P_i(x,t) + \lambda_i\, \text{Sym}_i(C; \sigma_i, \rho_i, \alpha_i)$$
+    $$\tilde{V}_{\sigma,i}(x,t;C) = V_i(x,t) - \kappa_i\, P_{\sigma,i}(x,t;C)\, Q_i(x,t)$$
+  </div>
+  <p class="sm">象徴文化形式 $C$ が高抽象世界の臨場感を増幅し、その世界の価値符号が正であるなら、象徴文化生成能力 $\sigma$ はその世界の実効ポテンシャルを下げ、その世界を個人間・世代間で共有・記憶・伝達可能にする。</p>
+</div>
+
+<div class="stitle">§20.1　象徴文化の変数</div>
+<table class="vtbl">
+  <tr><th>記号</th><th>意味</th></tr>
+  <tr><td class="vs">$C$</td><td>象徴文化形式。芸術・音楽・文学・儀式・神話・宗教・法・物語・共有記号など</td></tr>
+  <tr><td class="vs">$\sigma_i$</td><td>主体・系統・集団 $i$ の象徴文化生成能力</td></tr>
+  <tr><td class="vs">$\rho_i$</td><td>臨場感生成能力</td></tr>
+  <tr><td class="vs">$\alpha_i$</td><td>抽象度または包摂範囲</td></tr>
+  <tr><td class="vs">$\text{Sym}_i(C;\sigma_i,\rho_i,\alpha_i)$</td><td>高抽象世界を共有・保存・世代間伝達可能にする象徴文化関数</td></tr>
+  <tr><td class="vs">$\lambda_i$</td><td>象徴文化が臨場感を増幅する正の係数</td></tr>
+  <tr><td class="vs">$P_{\sigma,i}$</td><td>象徴文化による増幅後の臨場感</td></tr>
+  <tr><td class="vs">$\tilde{V}_{\sigma,i}$</td><td>象徴的臨場感を組み込んだ実効ポテンシャル</td></tr>
+  <tr><td class="vs">$Q_i$</td><td>価値符号。接近したい場合は正、回避したい場合は負</td></tr>
+</table>
+
+<div class="stitle">ステップ読解 — 七段階</div>
+<ol class="steps">
+  <li><span class="sn">1</span><div>まず、概念的には意味があるが、通常の認知にはまだリアルではない高抽象世界がある。</div></li>
+  <li><span class="sn">2</span><div>そこに象徴形式 $C$、すなわち歌・絵画・物語・儀式・詩・法・神話・宗教形式などを導入する。</div></li>
+  <li><span class="sn">3</span><div>象徴関数 $\text{Sym}_i$ は、高抽象を知覚可能・記憶可能・共有可能にする。</div></li>
+  <li><span class="sn">4</span><div>その結果、$P_{\sigma,i}$、すなわちその世界の臨場感が上がる。</div></li>
+  <li><span class="sn">5</span><div>その世界の価値符号 $Q_i$ が正であれば、臨場感が高いほど実効ポテンシャルは下がる。</div></li>
+  <li><span class="sn">6</span><div>実効ポテンシャルが下がると、Ego はその高抽象世界へ自然に接近し、そこに住みやすくなる。</div></li>
+  <li><span class="sn">7</span><div>世代を超えて、象徴文化は臨場感を伝達可能な形で保存し、Shared-High-TCZ を安定化する。</div></li>
+</ol>
+
+<div class="stitle">他の定理との接続</div>
+<table class="vtbl">
+  <tr><th>関連定理</th><th>何を与えるか</th><th>なぜ象徴文化が必要か</th></tr>
+  <tr><td class="vs">定理3</td><td>$\pi_i = \arg\min \mathbb{E}\int_0^T (V_i + \sum_j \gamma_{ij} S_{ij} + \eta_i A)\,dt$</td><td>LUB は見えるもの・感じられるものにされなければならない</td></tr>
+  <tr><td class="vs">進化定理</td><td>$\pi_{\text{evo}} = \arg\max_{(\alpha,\rho,\sigma)} F$, $\dot{z} = M\nabla F \Rightarrow dF/dt \ge 0$</td><td>象徴文化生成定理は進化定理が用いる独立軸 $\sigma$ を与える</td></tr>
+</table>
+</div><!-- end #sym -->
+
+
+<!-- ── 5. 進化定理 ── -->
+<div id="evo">
+<div class="pt-hd">
+  <h2>5. 苫米地進化定理</h2>
+  <div class="sub">利他性・臨場感・象徴文化の選択</div>
+</div>
+
+<div class="thm t12">
+  <div class="thm-label lb12">Theorem 12 — 苫米地進化定理</div>
+  <div class="fml fml-bl" style="margin:6px 0">
+    $$\pi_{\text{evo}} = \arg\max_{(\alpha,\rho,\sigma)} F, \qquad \dot{z} = M \nabla F \;\Longrightarrow\; \frac{dF}{dt} \ge 0$$
+  </div>
+  <p class="sm">ここで</p>
+  <div class="fml fml-bl" style="margin:6px 0">
+    $$F_i(\alpha_i, \rho_i, \sigma_i) = \int \bigl[\, -V_i + \beta_i \text{Share}_i + \nu_i G_i(\alpha_i) + \mu_i \text{Pres}_i + \omega_i \text{Sym}_i - C_i \,\bigr] dt$$
+  </div>
+  <p class="sm">限界利益条件のもとで、進化適応度は高抽象度・豊かな臨場感・象徴文化によって増加する。したがって、利他性・芸術・音楽・文学・宗教・道徳体系・平和への希求は、進化の例外ではなく、苫米地フレームワーク進化適応度構造の予測出力である。</p>
+</div>
+
+<table class="vtbl">
+  <tr><th>記号</th><th>意味</th></tr>
+  <tr><td class="vs">$V_i$</td><td>主体 $i$ の評価ポテンシャル</td></tr>
+  <tr><td class="vs">$\alpha$</td><td>正の収束率、または進化文脈での抽象度</td></tr>
+  <tr><td class="vs">$i,j,k,\ell$</td><td>主体・領域・メッセージの添字</td></tr>
+  <tr><td class="vs">$F_i$</td><td>主体・系統 $i$ の進化適応度汎関数</td></tr>
+  <tr><td class="vs">$\beta_i,\nu_i,\mu_i,\omega_i$</td><td>共有・集団・臨場感・象徴項の正の重み</td></tr>
+  <tr><td class="vs">$\text{Share}_i$</td><td>抽象度 $\alpha_i$ での共有・協力利益</td></tr>
+  <tr><td class="vs">$G_i$</td><td>集団生存・集団適応度項</td></tr>
+  <tr><td class="vs">$\text{Pres}_i$</td><td>臨場感生成能力からの適応利益</td></tr>
+  <tr><td class="vs">$\text{Sym}_i$</td><td>象徴文化からの適応利益</td></tr>
+  <tr><td class="vs">$C_i$</td><td>抽象度・臨場感・象徴能力のコスト項</td></tr>
+  <tr><td class="vs">$\rho_i / \sigma_i$</td><td>臨場感生成能力と象徴文化生成能力</td></tr>
+</table>
+
+<div class="insight">
+  苫米地進化定理は本理論の進化論的完成である。抽象的共有 TCZ 収束定理（定理3）により、各 LUB-TCZ は集団が共有する高次の安定領域となる。進化定理は、<strong>人類がその高次 LUB-TCZ に住むための能力を進化させうる</strong>ことを示す。利他性は包摂範囲を広げ、臨場感は抽象的未来をリアルにし、象徴文化はそのリアリティを人々と世代を超えて伝達する。進化は、高次の未来原点 LUB から生きる能力そのものを選択する。
+</div>
+
+<div class="stitle">§21.1　進化拡張の変数</div>
+<table class="vtbl">
+  <tr><th>変数</th><th>意味</th><th>日常語での読み方</th></tr>
+  <tr><td class="vs">$\alpha_i$</td><td>抽象度／包摂半径</td><td>主体の「われわれ」がどれだけ大きくなれるか</td></tr>
+  <tr><td class="vs">$\rho_i$</td><td>臨場感生成能力</td><td>抽象的未来をリアルに感じる／感じさせる力</td></tr>
+  <tr><td class="vs">$\sigma_i$</td><td>象徴文化生成能力</td><td>芸術・音楽・文学・宗教・儀礼・神話・物語で高次意味を伝える力</td></tr>
+  <tr><td class="vs">$\text{Share}_i(\alpha_i)$</td><td>協力利益</td><td>協力の輪が広がることで得られる利益</td></tr>
+  <tr><td class="vs">$G_i(\alpha_i)$</td><td>集団生存・集団適応度利益</td><td>集団が生き残り繁栄する利益</td></tr>
+  <tr><td class="vs">$\text{Pres}_i(\rho_i,\alpha_i)$</td><td>臨場感利益</td><td>高い未来をリアルに感じることの利益</td></tr>
+  <tr><td class="vs">$\text{Sym}_i(\sigma_i,\rho_i,\alpha_i)$</td><td>象徴文化利益</td><td>高い未来を個人間・世代間で安定化する利益</td></tr>
+  <tr><td class="vs">$C_i$</td><td>コスト</td><td>認知的・代謝的・社会的・文化的コスト</td></tr>
+</table>
+
+<div class="stitle">§21.2　拡張進化適応度汎関数</div>
+<div class="fml fml-bl">
+  $$F_i(\alpha_i, \rho_i, \sigma_i) = \int_0^T \Bigl[\, -V_i + \beta_i(\alpha_i)\text{Share}_i(\alpha_i) + \nu_i G_i(\alpha_i) + \mu_i \text{Pres}_i(\rho_i, \alpha_i) + \omega_i \text{Sym}_i(\sigma_i, \rho_i, \alpha_i) - C_i(\alpha_i, \rho_i, \sigma_i) \,\Bigr] dt$$
+</div>
+
+<div class="stitle">§21.2　限界利益条件 — Marginal Benefit Conditions</div>
+<div class="thm t12">
+  <div class="thm-label lb12">苫米地進化定理 — 限界利益条件</div>
+  <p class="sm">$F_i$ を拡張進化適応度汎関数とする。関連する適応領域において、抽象度・臨場感生成・象徴文化伝達の限界利益が、それぞれの限界コストを上回ると仮定する。</p>
+  <div class="fml fml-bl" style="margin:6px 0">
+    $$\beta_i(\alpha_i)\frac{\partial \text{Share}_i(\alpha_i)}{\partial \alpha_i} + \nu_i \frac{\partial G_i(\alpha_i)}{\partial \alpha_i} > \frac{\partial C_i}{\partial \alpha_i}$$
+    $$\mu_i \frac{\partial \text{Pres}_i}{\partial \rho_i} > \frac{\partial C_i}{\partial \rho_i} \qquad\qquad \omega_i \frac{\partial \text{Sym}_i}{\partial \sigma_i} > \frac{\partial C_i}{\partial \sigma_i}$$
+  </div>
+  <p class="sm">このとき、低抽象・低臨場感・低象徴能力の状態は、安定した適応度最大点ではありえない。進化的上昇は、高い抽象度・豊かな臨場感生成能力・象徴文化能力を選択する。</p>
+</div>
+<div class="def">
+  <div class="def-t">記号</div>
+  <p class="sm">$\partial$ … 偏微分。ある変数を少し動かした時の限界変化。</p>
+</div>
+<div class="insight">
+  したがって、人類の大規模協力・道徳体系・抽象的利他性・芸術・音楽・文学・宗教・平和への希求は、苫米地フレームワーク進化適応度構造の<strong>数学的に予測される帰結</strong>である。
+</div>
+
+<!-- Selfish gene -->
+<div class="stitle">§5.3　利己的遺伝子仮説は低抽象近似である</div>
+<div class="card">
+  <p>利己的遺伝子仮説は捨てられるわけではない。それは<strong>再分類される</strong>。低抽象領域では、Share・$G$・Pres・Sym が弱く、または存在しない。この場合、適応度は個体または近縁最適化に支配されるように見える。これは<strong>低 $\alpha$ 近似</strong>である。有用だが、不完全である。</p>
+  <p class="mt8">定理3は高抽象 LUB 統合を導入する。進化定理は、高抽象・高臨場感の共有未来を生き、伝える能力が進化的に選択されうることを示す。この大きな体系では、<strong>利他性は進化への矛盾ではない。それは高抽象における進化そのものである</strong>。</p>
+</div>
+
+<!-- Symbolic culture as evolutionary apparatus -->
+<div class="stitle">§5.4　進化的装置としての芸術・音楽・文学・宗教</div>
+<div class="card">
+  <p>芸術・音楽・文学・宗教・儀礼・神話・道徳的物語は、余剰的な副産物ではない。それらは、<strong>高抽象 LUB を共有臨場感へ変換する明確な機能を持つ象徴文化装置</strong>である。平和という未来も、単に概念として存在するだけでは不十分である。集団にとってリアルに感じられる必要がある。</p>
+  <div class="fml fml-pk mt8">
+    $$\text{象徴文化} \;=\; \text{高抽象度} \,\times\, \text{共有臨場感} \,\times\, \text{世代間伝達}$$
+  </div>
+</div>
+
+<!-- Cognitive future-time origin -->
+<div class="stitle">§5.5　人類の認知未来時間原点</div>
+<div class="card">
+  <p>進化定理は高次 LUB-TCZ の進化論的意味を与える。認知が未来 LUB-TCZ によって組織されるなら、人類の認知未来時間原点は、あらゆる diversity が消去されるのではなく、<strong>高次 LUB のもとで調和的に共存する Shared-High-TCZ</strong> としてモデル化できる。その未来では、平和・利他・尊厳・創造性・象徴文化・共存は、外から付け加えられた道徳ではない。それらは人類の認知時間を組織する高抽象構造である。</p>
+</div>
+<div class="insight">
+  <p class="bold">人類の認知未来時間原点</p>
+  <p class="mt8">あらゆる diversity が高次 LUB のもとで共存する Shared-High-TCZ である。現在の戦争は人類の運命ではない。それは、人類がその未来へ進化途上であることの証拠である。現在は未完成であり、だからこそ未来原点から現在を組織することが必要なのである。</p>
+</div>
+</div><!-- end #evo -->
+
+
+<!-- ── 6. 倫理制約 ── -->
+<div id="ethic">
+<div class="pt-hd">
+  <h2>6. 倫理制約 — Ethic(B)</h2>
+  <div class="sub">Decept から Ethic へ</div>
+</div>
+
+<div class="card">
+  <p>民生向け理論において最も重要なのは倫理制約である。認知制御の一般的定式化では、欺瞞を抑制する項として <strong>Decept(M)</strong> が導入された。これは認知戦システムが偽情報やディープフェイクなどの欺瞞的コンテンツを避け、さらに演繹数理を欠いた生成 AI による帰納的生成や AI へのサイバー攻撃を通じて自らを欺瞞的に運用することを避けるための、演繹的制約である。</p>
+  <p class="mt8">本論文ではこれを <strong>Ethic(B)</strong> に置換する。Ethic(B) は、クライアントや組織の<strong>自律性・尊厳・長期的利益・高抽象整合性</strong>を侵害する構造に対するペナルティである。</p>
+</div>
+
+<div class="stitle">Ethic 項の構成 — 四つの侵害形態</div>
+<table class="vtbl">
+  <tr><th>侵害形態</th><th>具体例</th></tr>
+  <tr><td class="vs">自律性の侵害</td><td>クライアントが選んだのではない方向へ誘導する</td></tr>
+  <tr><td class="vs">尊厳の侵害</td><td>クライアントを「治療対象」「修正対象」として扱う</td></tr>
+  <tr><td class="vs">長期的利益の侵害</td><td>短期成果のために長期的な認知構造を歪める</td></tr>
+  <tr><td class="vs">高抽象整合性の侵害</td><td>個人の利益のためにより高次の倫理的整合性を犠牲にする</td></tr>
+</table>
+
+<div class="stitle">倫理的コーチングの定義</div>
+<div class="insight">
+  <p style="font-size:15px;line-height:1.85">コーチングとは、相手を誘導することではない。<br>コーチングとは、相手が<strong>自ら高次の未来を選べる橋を設計すること</strong>である。</p>
+</div>
+<div class="card">
+  <p>これは哲学的選好ではなく、本論文の数理に組み込まれた制約である。Ethic(B) を高い $\delta$ で罰することにより、ブリッジ最適化の解は自律性保護の方向に偏る。コーチングが非操作的になるのはコーチが「慎重」だからではない。<strong>最適化それ自体が、操作的な構造を解として排除する</strong>のである。これが本論文の倫理的核心であり、認知戦理論が応用へ反転される際の決定的な構造的差異である。</p>
+</div>
+
+<div class="warn">
+  <p class="bold">倫理的コーチング・リーダーシップ ＝ 最も効果的な認知戦としての平和促進</p>
+  <p class="mt8 sm">本論文の数理は「最も効果的な認知戦戦略は平和を促進することである」という強い命題を導く。自律性・尊厳・長期利益・高次整合性を保護する Ethic(B) のもとで Shared-High-TCZ への統合を促進する実践は、<strong>倫理的かつ最適</strong>である——倫理と効果は対立しない。むしろ数理的に同一方向を指している。これは「平和の促進は理想だが現実的でない」という長年の通念に対する数理的反証であり、本枠組みでは<strong>平和促進こそが最も合理的かつ最も持続可能な戦略</strong>である。</p>
+</div>
+</div><!-- end #ethic -->
+
+
+<!-- ── 7. 結論 ── -->
+<div id="concl">
+<div class="pt-hd">
+  <h2>7. 結論</h2>
+  <div class="sub">最小5定理体系の成果</div>
+</div>
+<div class="card">
+  <p>本論文は、苫米地認知理論の最小5定理体系を提示した。TCZ への個人収束（苫米地主定理）、共有収束（共有TCZ収束定理）、高次抽象収束（抽象的共有TCZ収束定理）の基盤から、象徴文化生成（象徴文化生成定理）と進化（進化定理）へ至る直接連鎖を数学的に確立した。</p>
+</div>
+<ol class="steps">
+  <li><span class="sn">1</span><div><strong>苫米地主定理：</strong>自己制御がポテンシャル関数 $V$ を最小化する最適方針のもとで、認知状態は個人の TCZ に収束する。Self・Ego・TCZ は同一過程の三つの記述であり、認知ホメオスタシスが最適制御理論の言語で厳密に定式化される。</div></li>
+  <li><span class="sn">2</span><div><strong>共有 TCZ 収束定理：</strong>二者間の認知調整が対称相互作用項 $\gamma_{ij} S_{ij}$ を通じて共有 TCZ を形成し、協調・共感・コーチングの数理基盤となる。</div></li>
+  <li><span class="sn">3</span><div><strong>抽象的共有 TCZ 収束定理：</strong>LUB（Least Upper Bound）が共有 TCZ を高次の抽象概念として束ね、個人を超えた文化・集団・組織の秩序収束を実現する。</div></li>
+  <li><span class="sn">4</span><div><strong>象徴文化生成定理：</strong>象徴文化形式 $C$ が高抽象世界の臨場感を増幅し、その世界の価値符号が正であるとき、$\sigma$ はその世界の実効ポテンシャルを下げ、高抽象世界を個人間・世代間で共有・記憶・伝達可能にする。芸術・神話・宗教・法・物語はこの数学的装置の例証である。</div></li>
+  <li><span class="sn">5</span><div><strong>進化定理：</strong>人類は、高抽象度・豊かな臨場感・象徴文化・利他性・平和へ向かう能力を進化させる。それらは Shared-High-TCZ を生き、世代を超えて伝達することを可能にするからである。</div></li>
+</ol>
+<div class="insight">
+  この最小5定理体系の最終的主張は次の通りである。認知ホメオスタシス（主定理・共有TCZ収束定理・抽象的共有TCZ収束定理）が存在し、そこから象徴文化生成と進化が必然的に導かれる。すべての多様性が高次 LUB のもとで調和する <strong>Shared-High-TCZ が、人類の認知未来時間原点</strong>として存在する。認知時間はその未来から現在行動と過去意味へ流れ、人類はその Shared-High-TCZ へと進化する。現在の紛争や戦争は人類の最終的本性を示すものではなく、その進化の途上にあることを示す。
+</div>
+<div class="card">
+  <p>最後に、本論文の5定理は著者が提唱する<strong>認知物理学（Cognitive Physics）</strong>および<strong>認知生物学（Cognitive Biology）</strong>の基盤フレームワークとして提示される。認知物理学は認知に動力学的法則——ポテンシャル・制御・収束——を与え、認知生物学は認知に進化論的説明——抽象度・臨場感・利他性・象徴文化を選択される形質として——を与える。本論文で提示した TCZ・Ego・LUB の統一数理は、これら二つの学問分野を厳密に展開するための共通基盤として意図されている。</p>
+</div>
+</div><!-- end #concl -->
+
+
+<!-- ── 8. 参考文献 ── -->
+<div id="ref">
+<div class="pt-hd">
+  <h2>8. 参考文献</h2>
+  <div class="sub">References</div>
+</div>
+<div class="card sm">
+  <ul class="blist">
+    <li>Bellman, R. (1957). <em>Dynamic Programming.</em> Princeton University Press.</li>
+    <li>LaSalle, J. P. (1976). <em>The Stability of Dynamical Systems.</em> SIAM.</li>
+    <li>Lyapunov, A. M. (1892/1992). <em>The General Problem of the Stability of Motion.</em> Taylor &amp; Francis.</li>
+    <li>苫米地英人（2025）『オーセンティック・コーチング2026 ～本物のコーチング～』開拓社、2025年11月24日。ISBN-10: 4758970297；ISBN-13: 978-4758970297。</li>
+    <li>Tomabechi, H. (2026a). <em>A Unified Theory of Latent Potentials: Homeostasis and Cognitive Warfare — Toward a Mathematical Foundation of Cognitive Control in Physical, Social, and AI Systems.</em> National Defense University Lecture Paper, April 4, 2026, public revised edition. Available at: https://tomabechi.jp/TomabechiNDUpaperENpublic.pdf</li>
+    <li>苫米地英人（2026c）「認知潜在ポテンシャル理論」Cognitive Research Laboratories 技術報告、2026年5月。Cognitive Latent Potential Theory.</li>
+  </ul>
+</div>
+</div><!-- end #ref -->
+
+
+<!-- ════════════════════════════════════════════════
+     9. 付録 — 厳密証明
+════════════════════════════════════════════════ -->
+<div id="appendix">
+<div class="pt-hd">
+  <h2>9. 付録 — 厳密証明</h2>
+  <div class="sub">Lyapunov 解析 + 比較定理 + HJB 方程式</div>
+</div>
+
+<!-- 5-theorem chain -->
+<div class="stitle">読者ガイド — 最小5定理の論理的連鎖</div>
+<div class="card">
+  <div style="text-align:center;padding:6px 0">
+    <div class="thm t1" style="margin:6px auto;max-width:300px;padding:10px">
+      <div class="thm-label lb1">定理1</div><strong>苫米地主定理</strong><br><small>個人 TCZ への収束</small>
+    </div>
+    <div style="font-size:20px;color:var(--c1)">↓</div>
+    <div class="thm t2" style="margin:6px auto;max-width:300px;padding:10px">
+      <div class="thm-label lb2">定理2</div><strong>共有TCZ収束定理</strong><br><small>二者間 TCZ の共有収束</small>
+    </div>
+    <div style="font-size:20px;color:var(--c1)">↓</div>
+    <div class="thm t3" style="margin:6px auto;max-width:300px;padding:10px">
+      <div class="thm-label lb3">定理3</div><strong>抽象的共有TCZ収束定理</strong><br><small>集団 LUB-TCZ への抽象的収束</small>
+    </div>
+    <div style="font-size:20px;color:var(--c1)">↓</div>
+    <div class="thm t11" style="margin:6px auto;max-width:300px;padding:10px">
+      <div class="thm-label lb11">定理11</div><strong>苫米地象徴文化生成定理</strong><br><small>象徴文化が高抽象世界に臨場感を与える</small>
+    </div>
+    <div style="font-size:20px;color:var(--c1)">↓</div>
+    <div class="thm t12" style="margin:6px auto;max-width:300px;padding:10px">
+      <div class="thm-label lb12">定理12</div><strong>苫米地進化定理</strong><br><small>高抽象・臨場感・象徴文化が進化的に選択される</small>
+    </div>
+  </div>
+</div>
+
+<!-- Lyapunov valley SVG -->
+<div class="stitle">Lyapunov 関数とは — V の谷へ転がり落ちる</div>
+<div class="fig-wrap">
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lyapunov valley">
+  <defs>
+    <marker id="arrBall" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" style="fill:var(--c2)"/>
+    </marker>
+  </defs>
+  <line x1="30" y1="175" x2="305" y2="175" style="stroke:var(--tx3)" stroke-width="1.2"/>
+  <line x1="30" y1="175" x2="30" y2="20" style="stroke:var(--tx3)" stroke-width="1.2"/>
+  <text x="20" y="28" style="fill:var(--tx3)" font-size="9" text-anchor="middle">V</text>
+  <text x="300" y="192" style="fill:var(--tx3)" font-size="9" text-anchor="end">認知状態 x</text>
+  <!-- valley curve -->
+  <path d="M40,40 Q167,250 295,40" style="fill:none;stroke:var(--c1)" stroke-width="2.5"/>
+  <!-- TCZ region at bottom -->
+  <rect x="120" y="150" width="95" height="25" rx="4" style="fill:var(--c1);opacity:.45"/>
+  <text x="167" y="167" style="fill:#fff" font-size="10" font-weight="700" text-anchor="middle">TCZ（谷底）</text>
+  <line x1="120" y1="150" x2="215" y2="150" style="stroke:var(--c1e)" stroke-dasharray="3 2" stroke-width="1"/>
+  <text x="232" y="146" style="fill:var(--c1e)" font-size="9">V ≤ θ</text>
+  <!-- ball rolling -->
+  <circle cx="70" cy="80" r="6" style="fill:var(--c2)"/>
+  <path d="M76,86 Q110,135 140,150" style="fill:none;stroke:var(--c2)" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrBall)"/>
+</svg>
+<div class="fig-cap">図 — Ego は累積評価コストを下げ、認知状態は $V$ の谷（TCZ）へ転がり落ちる。$dV/dt \le 0$ がこの「落ちていく」運動の数学的表現である。</div>
+</div>
+
+<!-- A.1 -->
+<div class="col-hd">A.1　一般設定 — 統一 Lyapunov 補題</div>
+<div class="col-bd">
+<div class="card">
+  <p class="sm">$X$ を有限次元滑らかな状態空間とし、距離 $d$ を持つとする。制御ダイナミクスを $\dot{x} = f(x,u,t)$ とする。$f$ は $x$ について局所 Lipschitz 連続で、$u,t$ について連続とする。許容制御は区間 $[0,T]$ 上で一意な前方解を生成すると仮定する。微分可能な Lyapunov 候補 $\Phi$ と閾値 $\theta$ に対して $\Omega_\theta = \{x \mid \Phi(x,t) \le \theta\}$ を定義する。</p>
+  <div class="fml fml-bl mt8">
+    $$\dot{x} = F(x,t), \quad \Omega_\theta = \{\, x \mid \Phi(x,t) \le \theta \,\}$$
+    $$\frac{d\Phi}{dt} \le -\alpha\bigl(\Phi(x,t) - \theta\bigr),\;\; \alpha > 0 \;\Longrightarrow\; \text{dist}\bigl(x(t), \Omega_\theta\bigr) \to 0$$
+  </div>
+  <p class="bold pk mt8">証明の数式骨格</p>
+  <div class="fml fml-bl">
+    $$Y(t) = \Phi(x(t), t) - \theta, \quad \dot{Y}(t) \le -\alpha Y(t), \quad Y(t) \le Y(0)\, e^{-\alpha t}$$
+    $$\therefore\;\; \text{dist}\bigl(x(t), \Omega_\theta\bigr) \to 0$$
+  </div>
+  <p class="sm mt8">$\Omega_\theta$ の外側で上記不等式が成り立つならば、比較定理により軌道は $\Omega_\theta$ へ収束する。本付録のすべての証明はこの型を基礎とする。</p>
+  <div class="note mt8">
+    <p class="bold sm">補足：コスト最小化から降下条件へ（HJB）</p>
+    <p class="sm">価値関数を $J^*(x,t) = \inf_u \int_t^T V(x(\tau), \tau)\, d\tau$ とする。所与の正則性のもとで $J^*$ はハミルトン–ヤコビ–ベルマン方程式</p>
+    <div class="fml fml-bl" style="margin:6px 0">
+      $$-\partial_t J^* = \min_u \bigl\{\, V + \nabla J^* \cdot f(x,u,t) \,\bigr\}$$
+    </div>
+    <p class="sm">を満たす。したがって最適閉ループに沿って $dJ^*/dt = -V \le 0$、すなわち $\pi_c$ の下で価値関数は非増加である。境界 $\partial\Omega_\theta$ では同じ不等式が $d\Phi/dt \le 0$ を与えるため $\Omega_\theta$ は前方不変であり（Nagumo の条件）、$\text{dist}(x(t), \Omega_\theta) \to 0$ が得られる。</p>
+  </div>
+</div>
+</div>
+
+<!-- A.2 -->
+<div class="col-hd">A.2　定理1（苫米地主定理）の証明</div>
+<div class="col-bd">
+<div class="card">
+  <p class="bold pk">証明対象：</p>
+  <div class="fml fml-bl">
+    $$\pi_c(x) = \arg\min_u \int_0^T V(x(t), t)\, dt \;\Longrightarrow\; x^*(t) \to \text{TCZ}(x_0)$$
+  </div>
+  <p class="bold pk mt8">数式骨格：</p>
+  <div class="fml fml-bl">
+    $$\Phi = V, \quad \Omega_\theta = \text{TCZ}(x_0)$$
+    $$\frac{dV}{dt} \le -\alpha(V - \theta), \quad V(x(t),t) - \theta \le \bigl(V(x_0,0) - \theta\bigr)e^{-\alpha t}$$
+  </div>
+  <p class="sm mt8">$\Phi(x,t) = V(x,t)$ とおき $\Omega_\theta = \{x \in X \mid V(x,t) \le \theta\}$ を定義する。これは到達可能集合上で見た $\text{TCZ}(x_0)$ の状態空間表現である。Ego 制御方策 $\pi_c$ が閉ループダイナミクス $\dot{x} = F(x,t)$ を誘導し、$x \notin \Omega_\theta$ において</p>
+  <div class="fml fml-bl" style="margin:6px 0">
+    $$\partial_t V(x,t) + \nabla V(x,t) \cdot F(x,t) \le -\alpha\bigl(V(x,t) - \theta\bigr)$$
+  </div>
+  <p class="sm">を満たすとする。$y(t) = V(x(t),t) - \theta$ とおくと $\Omega_\theta$ の外側では $\dot{y}(t) \le -\alpha y(t)$ であり、比較定理により $y(t) \le y(0)e^{-\alpha t}$。したがって $\limsup_{t\to\infty} V(x(t),t) \le \theta$ であり、劣位集合のコンパクト性と $V$ の連続性より $\text{dist}(x(t), \Omega_\theta) \to 0$ が従う。</p>
+  <div class="insight mt8"><strong>結論：</strong>可能世界意味論と状態空間制御の五ステップ同値性により、Self 演算子を $\pi_c$ として実装することは同じ収束主張を力学系の言語で表すことに等しい。よって Self・Ego・TCZ は、意味的構造・制御プロセス・安定極限集合として統一される。∎</div>
+</div>
+</div>
+
+<!-- A.3 -->
+<div class="col-hd">A.3　定理2（共有TCZ収束定理）の証明</div>
+<div class="col-bd">
+<div class="card">
+  <p class="bold pk">証明対象：</p>
+  <div class="fml fml-bl">
+    $$\pi_i = \arg\min_{u_i(t)} \int_0^T \Bigl( V_i(x_i(t),t) + \sum_j \gamma_{ij} S_{ij}(x_i,x_j) \Bigr) dt \;\Longrightarrow\; x^*(t) \to \text{TCZ}_{\text{shared}}$$
+  </div>
+  <p class="bold pk mt8">数式骨格：</p>
+  <div class="fml fml-bl">
+    $$\mathcal{L}(x,t) = \sum_i V_i(x_i,t) + \sum_{i,j} \gamma_{ij} S_{ij}(x_i,x_j), \quad \gamma_{ij} > 0$$
+    $$\dot{\mathcal{L}} \le -\alpha(\mathcal{L} - \theta)\;\; \text{outside}\;\; \Omega_{\theta}^{\mathcal{L}}, \quad S_{ij} \to 0$$
+  </div>
+  <p class="sm mt8">集団状態を $x = (x_1, \dots, x_N)$ とする。各主体 $i$ は自分の評価的不安定性 $V_i$ と他者 $j$ との認知的不整合 $S_{ij}$ を同時に含む累積コストを最小化する制御方策 $\pi_i$ に従う（$S_{ij} \ge 0$, $\gamma_{ij} > 0$）。複合 Lyapunov 関数 $\mathcal{L}$ が安定集合の外側で $\dot{\mathcal{L}} \le -\alpha(\mathcal{L} - \theta)$ を満たすなら、統一 Lyapunov 補題により $\text{dist}(x(t), \Omega_\theta^{\mathcal{L}}) \to 0$。</p>
+  <div class="insight mt8"><strong>結論：</strong>$\mathcal{L}$ のすべての項は非負であるため、$\mathcal{L}$ が低いことは各主体の個人不安定性が小さく、かつ主体間の不整合 $S_{ij}$ が小さいことを意味する。社会的結合グラフが強連結なら、LaSalle の不変性原理により $S_{ij} \to 0$。したがって結合軌道は共有安定領域 $\text{TCZ}_{\text{shared}}$ へ収束する。∎</div>
+</div>
+</div>
+
+<!-- A.4 -->
+<div class="col-hd">A.4　定理3（抽象的共有TCZ収束定理）の証明</div>
+<div class="col-bd">
+<div class="card">
+  <p class="bold pk">証明対象：</p>
+  <div class="fml fml-bl">
+    $$\pi_i = \arg\min_{u_i(t)} \mathbb{E}\int_0^T \Bigl( V_i + \sum_j \gamma_{ij} S_{ij} + \eta_i A(x_i(t)) \Bigr) dt$$
+    $$A(x) = 0 \iff \varphi(x) = \text{LUB}(W_1, \dots, W_N) \;\Longrightarrow\; x^*(t) \to \text{LUB}(W_1, \dots, W_N)$$
+  </div>
+  <p class="bold pk mt8">数式骨格：</p>
+  <div class="fml fml-bl">
+    $$\mathcal{L}_A = \sum_i V_i + \sum_{i,j} \gamma_{ij} S_{ij} + \eta A(x), \quad A(x) \ge 0$$
+    $$A(x) = 0 \iff \varphi(x) = \top = \text{LUB}(W_1, \dots, W_N)$$
+    $$\dot{\mathcal{L}}_A \le -\alpha(\mathcal{L}_A - \theta_A), \quad S_{ij} \to 0,\; A(x) \to 0,\; \varphi(x(t)) \to \top$$
+  </div>
+  <p class="sm mt8">定理2の複合 Lyapunov 関数 $\mathcal{L}$ に抽象ポテンシャル $A(x)$ を加える。$A(x)$ は非負であり、$A(x) = 0$ となるのは抽象写像 $\varphi(x)$ が目標 LUB に到達したとき、すなわち $\varphi(x) = \top = \text{LUB}(W_1, \dots, W_N)$ のときに限るよう設計される。</p>
+  <div class="insight mt8"><strong>結論：</strong>不変集合上では、非負の社会的不整合項が $S_{ij} \to 0$ を要求し、非負の抽象項が $A(x) \to 0$ を要求する。$A(x) \to 0$ は設計条件により $\varphi(x) \to \text{LUB}(W_1, \dots, W_N)$ と同値である。ゆえに系は低次の交差ではなく、高次の最小上界へ収束する。∎</div>
+</div>
+</div>
+
+<!-- A.5 -->
+<div class="col-hd">A.5　苫米地象徴文化生成定理の証明</div>
+<div class="col-bd">
+<div class="card">
+  <p class="bold pk">証明対象：</p>
+  <div class="fml fml-bl">
+    $$P_{\sigma,i} = P_i + \lambda_i \text{Sym}_i(C; \sigma_i, \rho_i, \alpha_i), \quad \tilde{V}_{\sigma,i} = V_i - \kappa_i P_{\sigma,i} Q_i$$
+    $$Q_i > 0,\;\; \lambda_i \frac{\partial \text{Sym}_i}{\partial \sigma_i} > 0 \;\Longrightarrow\; \frac{\partial \tilde{V}_{\sigma,i}}{\partial \sigma_i} < 0$$
+  </div>
+  <p class="bold pk mt8">数式骨格：</p>
+  <div class="fml fml-bl">
+    $$\frac{\partial P_{\sigma,i}}{\partial \sigma_i} = \lambda_i \frac{\partial \text{Sym}_i}{\partial \sigma_i} > 0$$
+    $$\frac{\partial \tilde{V}_{\sigma,i}}{\partial \sigma_i} = -\kappa_i Q_i \frac{\partial P_{\sigma,i}}{\partial \sigma_i}, \quad \kappa_i > 0,\, Q_i > 0 \;\Rightarrow\; \frac{\partial \tilde{V}_{\sigma,i}}{\partial \sigma_i} < 0$$
+  </div>
+  <p class="sm mt8">象徴的に増幅された臨場感を $P_{\sigma,i} = P_i + \lambda_i \text{Sym}_i$ と定義する。象徴文化能力 $\sigma_i$ の増加が $\text{Sym}_i$ を増加させ $\lambda_i > 0$ であるなら、$P_{\sigma,i}$ は $\sigma_i$ に関して増加する。これを臨場感加重実効ポテンシャル $\tilde{V}_{\sigma,i} = V_i - \kappa_i P_{\sigma,i} Q_i$ に代入すると、正の価値を持つ世界では $Q_i > 0$ であるから $\tilde{V}_{\sigma,i}$ の $\sigma_i$ に関する微分は負になる。</p>
+  <div class="insight mt8"><strong>結論：</strong>したがって象徴文化は、正の価値を持つ高抽象世界の実効ポテンシャルを下げる。歌・物語・儀式・絵画・宗教形式などが高い世界をリアルにし、その世界が望ましいなら、人間の認知はその世界へ向かいやすくなる。これが象徴文化が独立した進化能力である理由である。∎</div>
+</div>
+</div>
+
+<!-- A.6 -->
+<div class="col-hd">A.6　苫米地進化定理の証明（逆さまの Lyapunov）</div>
+<div class="col-bd">
+<div class="card">
+  <p class="bold pk">証明対象：</p>
+  <div class="fml fml-bl">
+    $$F_i(\alpha_i,\rho_i,\sigma_i) = \int \bigl[ -V_i + \beta_i(\alpha_i)\text{Share}_i(\alpha_i) + \nu_i G_i(\alpha_i) + \mu_i \text{Pres}_i(\rho_i,\alpha_i) + \omega_i \text{Sym}_i(\sigma_i,\rho_i,\alpha_i) - C_i(\alpha_i,\rho_i,\sigma_i) \bigr] dt$$
+  </div>
+  <p class="bold pk mt8">数式骨格：</p>
+  <div class="fml fml-bl">
+    $$\dot{z}_i = M_i(z_i) \nabla F_i(z_i), \quad \frac{dF_i}{dt} = \nabla F_i^{\top} M_i \nabla F_i \ge 0$$
+  </div>
+  <p class="sm mt8">$z_i = (\alpha_i, \rho_i, \sigma_i)$ を主体・系譜 $i$ の進化的認知文化パラメータベクトルとする。パラメータ領域 $D$ はコンパクトであり、$F_i$ は $D$ 上で連続微分可能とする。選択ダイナミクスを正定値勾配上昇系 $\dot{z}_i = M_i \nabla F_i$（$M_i$ は対称正定値）と定義する。軌道に沿って $dF_i/dt = \nabla F_i^{\top} M_i \nabla F_i \ge 0$、等号は $\nabla F_i = 0$ のときに限る。同値に、Lyapunov 候補 $\Psi_{11}(z_i) = -F_i(z_i)$ は $d\Psi_{11}/dt \le 0$ を満たす。</p>
+  <p class="sm mt8">低抽象・低臨場感・低象徴能力領域では限界利益条件により</p>
+  <div class="fml fml-bl" style="margin:6px 0">
+    $$\beta_i \frac{\partial \text{Share}_i}{\partial \alpha_i} + \nu_i \frac{\partial G_i}{\partial \alpha_i} - \frac{\partial C_i}{\partial \alpha_i} > 0, \quad \mu_i \frac{\partial \text{Pres}_i}{\partial \rho_i} - \frac{\partial C_i}{\partial \rho_i} > 0, \quad \omega_i \frac{\partial \text{Sym}_i}{\partial \sigma_i} - \frac{\partial C_i}{\partial \sigma_i} > 0$$
+  </div>
+  <p class="sm">である。したがって $F_i$ は抽象度・臨場感生成能力・象徴文化能力を増加させる方向に正の方向微分を持つ。ゆえに低 $\alpha$・低 $\rho$・低 $\sigma$ の点は局所最大ではありえない。</p>
+  <div class="insight mt8"><strong>結論：</strong>コンパクト性により最大点は存在し、限界利益不等式によりその最大点は純粋な低抽象・低臨場感・低象徴能力領域には存在しない。したがって進化的選択は、高い抽象度・豊かな臨場感生成能力・象徴文化能力を選択する。∎</div>
+  <div class="rdnote mt8">
+    <div class="rdt">💡 逆さまの Lyapunov（数式なしの要点）</div>
+    <div class="sm">進化定理の証明は、これまでの型をそのまま上下逆さにしたものである。下がる一方の $V$ の代わりに、上がる一方の適応度 $F$ を使う。更新行列 $M$ が正定値である限り $dF/dt \ge 0$、つまり進化は適応度の坂を上るだけ。同じ一つの数学が、安定と進化の両方を支えている。</div>
+  </div>
+</div>
+</div>
+
+<!-- A.7 -->
+<div class="col-hd">A.7　系：人類の認知未来時間原点</div>
+<div class="col-bd">
+<div class="card">
+  <p class="bold pk">数式骨格：</p>
+  <div class="fml fml-bl">
+    $$G_H = \text{LUB}_{\text{Human}}(\text{TCZ}_1, \dots, \text{TCZ}_N), \quad H_{G_H}(x(t)) \downarrow$$
+  </div>
+  <p class="sm mt8">抽象的共有 TCZ 収束定理（定理3）により、各未来 LUB-TCZ は集団の高次安定領域として機能しうる。進化定理により、進化ダイナミクスは高次 LUB-TCZ を住みうるもの・伝達しうるものにする能力を選択する。あらゆる diversity が高次 LUB のもとで包摂される人類 Shared-High-TCZ を $G_H$ とする。$G_H$ が利用可能な高抽象未来の中で長期共有適応度を最大化するなら、それは人類の認知未来時間原点として機能する。</p>
+  <div class="insight mt8"><strong>結論：</strong>現在の紛争は、現在状態がまだ $G_H$ に収束していないことを示す。それは $G_H$ が組織化未来として存在することを否定しない。∎</div>
+</div>
+</div>
+
+<!-- Mathematical foundations: 3 questions -->
+<div class="stitle mt20">数学的基礎 — 数理的厳密性の疑問とその解決</div>
+<div class="card">
+  <p class="sm">本節は、最小5定理体系について制御理論および応用数学の観点から生じうる数理的厳密性の疑問とその解決を整理する。</p>
+</div>
+
+<div class="col-hd">疑問1 — Lyapunov 降下のギャップ（$\int V\,dt$ の最小化は $V$ の減少を保証するか）</div>
+<div class="col-bd">
+<div class="card">
+  <p class="bold pk">疑問点：</p>
+  <p class="sm">「$\pi_c$ が $\int V\,dt$ を最小化する $\Rightarrow x^*(t) \to \text{TCZ}$」という主張は自明でない接続を前提とする。最適制御方策は $V$ の時間積分を最小化するが、これは $V(x^*(t), t)$ が軌道上で単調に減少することを自動的には意味しない。最適軌道は長期的コストを下げるために一時的に $V$ が上昇することを許容しうる。</p>
+  <p class="bold pk mt8">解決：</p>
+  <p class="sm">厳密な接続は HJB 方程式を通じて確立される。価値関数 $J^*(x,t) = \inf_u \int_t^T V\,d\tau$ は標準的正則条件のもとで $-\partial_t J^* = \min_u\{V + \nabla J^* \cdot f\}$ を満たす。最適閉ループに沿って $dJ^*/dt = -V \le 0$。したがって $V$ そのものではなく $J^*$ が Lyapunov 関数として機能する。降下条件 $d\Phi/dt \le -\alpha(\Phi - \theta)$ は付録の散逸性仮定から従う。この仮定は最適性の帰結ではなく、「Ego の制御が積分平均だけでなく軌道に沿って一貫して低い評価コストへ舵を取る」という認知システムの追加的な構造的要件である。</p>
+</div>
+</div>
+
+<div class="col-hd">疑問2 — 定理3のみに現れる確率的期待値 $\mathbb{E}$</div>
+<div class="col-bd">
+<div class="card">
+  <p class="bold pk">疑問点：</p>
+  <p class="sm">定理3は制御目標に期待値演算子 $\mathbb{E}$ を導入するが、定理1・2および象徴文化生成・進化定理は決定論的積分を用いる。この期待値を規定する確率空間が定義されていない。</p>
+  <p class="bold pk mt8">解決：</p>
+  <p class="sm">定理3の期待値は、包摂束における LUB 位置についての不確実性から生じる。主体が他者の認知世界位置や束内の目標 LUB の場所を完全には知らない場合、制御目標は確率的となる。確率測度 $\Pr$ は束上の $(W_1, \dots, W_N)$ に関する主体の<strong>認識論的不確実性</strong>の上に定義される。束位置が完全に既知の特殊ケースでは $\mathbb{E}$ は恒等演算子に帰着し、定理3は抽象度項が加わった決定論的形式の定理2に帰着する。他の定理も一般性のためすべてに $\mathbb{E}$ を付与でき、確率的一般化は適切な可測性条件のもとで標準的議論により従う。</p>
+</div>
+</div>
+
+<div class="col-hd">疑問3 — 進化定理：適応ダイナミクスの最適解への収束</div>
+<div class="col-bd">
+<div class="card">
+  <p class="bold pk">疑問点：</p>
+  <p class="sm">適応ダイナミクス $dF_i/dt = \nabla F_i^{\top} M_i \nabla F_i \ge 0$ は $F_i$ が単調非減少であることを示すが、これは最適解 $(\alpha^*, \rho^*, \sigma^*)$ への収束を自動的には意味しない。</p>
+  <p class="bold pk mt8">解決：</p>
+  <p class="sm">適応ダイナミクスの収束は3つの条件から従う。</p>
+  <ol class="steps mt8">
+    <li><span class="sn">1</span><div>$F_i$ は上から有界（Share, $G$, Pres, Sym が有限の個体群と環境収容力で抑えられる）。</div></li>
+    <li><span class="sn">2</span><div>水平集合 $\{z : F_i(z) \ge c\}$ はコンパクト（コスト項 $C_i \to \infty$ as $\alpha,\rho,\sigma \to \infty$ が無限遠発散を妨げる）。</div></li>
+    <li><span class="sn">3</span><div>勾配流 $\dot{z}_i = M_i \nabla F_i$ はリミットサイクルを持たない（$F_i$ が厳密な Lyapunov 関数）。</div></li>
+  </ol>
+  <p class="sm mt8">これら3条件のもとで、LaSalle の不変性原理は臨界点集合 $\{z : \nabla F_i(z) = 0\}$ への収束を保証する。限界利益条件により低抽象度領域は局所最大ではないため、臨界点は高抽象度領域に存在する。最大点ではなく鞍点へ収束する可能性は $M_i$ の正定値性により排除される。</p>
+</div>
+</div>
+
+<!-- Soundness summary -->
+<div class="stitle mt20">定理の健全性まとめ</div>
+<table class="vtbl">
+  <tr><th>定理</th><th>発見された疑問点</th><th>解決後の状態</th></tr>
+  <tr><td class="vs">T1</td><td>HJB-Lyapunov ギャップ</td><td>✓ 解決：散逸性仮定を明示</td></tr>
+  <tr><td class="vs">T2</td><td>重大な問題なし</td><td>✓ 強結合条件のもとで健全</td></tr>
+  <tr><td class="vs">T3</td><td>$\mathbb{E}$ の確率空間が未定義</td><td>✓ 解決：束位置に関する認識論的不確実性</td></tr>
+  <tr><td class="vs">象徴文化<br>生成定理</td><td>重大な問題なし</td><td>✓ 象徴文化生成の設定で健全</td></tr>
+  <tr><td class="vs">進化定理</td><td>最適解への収束</td><td>✓ 解決：LaSalle＋コンパクト性＋サイクルなし</td></tr>
+</table>
+<div class="note">本ミニマル5定理体系の論理構造は健全である。定理間に循環依存は存在しない：<strong>T1 → T2 → T3</strong>（結合項を順次追加）。象徴文化生成定理は高抽象な共有TCZの伝達機構を確立し、進化定理はそれらを支える利他性・臨場感・象徴能力の進化的選択を確立する。各定理は先行定理の出力を入力または構造的仮定として用い、逆方向の依存を持たない。</div>
+
+<!-- 5-theorem summary table -->
+<div class="stitle mt20">定理一覧表 — 5定理（定理1・2・3・象徴文化生成定理・進化定理）</div>
+<table class="thm-tbl">
+  <tr><th>定理</th><th>中心式</th><th>主な変数</th><th>意味</th></tr>
+  <tr>
+    <td class="vs">定理1<br>苫米地主定理</td>
+    <td>$\pi_c = \arg\min \int_0^T V\,dt \Rightarrow x^*(t) \to \text{TCZ}(x_0)$</td>
+    <td>$V$：不安定性<br>TCZ：安定領域</td>
+    <td>自己 Ego が最適制御のもとで個人 TCZ 谷へ指数的に収束する</td>
+  </tr>
+  <tr>
+    <td class="vs">定理2<br>共有TCZ収束定理</td>
+    <td>$\pi_i = \arg\min \int_0^T (V_i + \sum \gamma_{ij} S_{ij})\,dt \Rightarrow (x_1, x_2) \to \text{TCZ}_{\text{sh}}$</td>
+    <td>$\gamma_{ij}$：結合<br>$S_{ij}$：共感項</td>
+    <td>二個体がカップリングすると共有安定谷に収束する</td>
+  </tr>
+  <tr>
+    <td class="vs">定理3<br>抽象的共有TCZ<br>収束定理</td>
+    <td>$\pi_i = \arg\min \mathbb{E}\int (V_i + \sum \gamma S + \eta_i A)\,dt \Rightarrow A_i(t) \to 0$</td>
+    <td>$A$：抽象ポテンシャル<br>LUB：最小上界</td>
+    <td>集団が LUB の高次ゴールを共有すると抽象的共有 TCZ に収束する</td>
+  </tr>
+  <tr>
+    <td class="vs">象徴文化<br>生成定理</td>
+    <td>$\pi_c^{\text{sym}} = \arg\min \int P_{\text{sym}}\,dt$, $P_{\sigma,i} = P_i + \lambda_i \text{Sym}_i$</td>
+    <td>Sym：象徴<br>$P_\sigma$：象徴強化臨場感</td>
+    <td>象徴は高次世界へ臨場感を与え谷を深める</td>
+  </tr>
+  <tr>
+    <td class="vs">進化定理</td>
+    <td>$\pi_{\text{evo}} = \arg\max F$, $\dot{z} = M\nabla F$, $dF/dt \ge 0$</td>
+    <td>$F$：適応度汎関数<br>$\alpha,\rho,\sigma$：進化変数</td>
+    <td>進化は高 $\alpha$・$\rho$・$\sigma$ へ適応度の坂を一方向に上る</td>
+  </tr>
+</table>
+</div><!-- end #appendix -->
+
+</div><!-- end .main -->
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <p>Copyright © 2026 Hideto Tomabechi. All rights reserved.</p>
+  <p class="mt8">Carnegie Mellon University · George Mason University · Cognitive Research Labs.</p>
+  <p class="mt8" style="opacity:.8;font-size:11px">苫米地進化論（5定理版）— 認知ホメオスタシスから象徴文化と進化へ<br>無断転載を禁じます。</p>
+</footer>
+
+<script>
+// ─── Dark mode toggle ───
+var html = document.documentElement;
+var btn  = document.getElementById('themeBtn');
+function isDark() {
+  if (html.classList.contains('dark')) return true;
+  if (html.classList.contains('light')) return false;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+function syncIcon() { btn.textContent = isDark() ? '☀️' : '🌙'; }
+btn.addEventListener('click', function() {
+  if (isDark()) { html.classList.remove('dark'); html.classList.add('light'); }
+  else { html.classList.remove('light'); html.classList.add('dark'); }
+  syncIcon();
+});
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+  if (!html.classList.contains('dark') && !html.classList.contains('light')) syncIcon();
+});
+syncIcon();
+
+// ─── Collapsible sections ───
+document.querySelectorAll('.col-hd').forEach(function(hd) {
+  hd.addEventListener('click', function() {
+    this.classList.toggle('open');
+    var bd = this.nextElementSibling;
+    if (bd && bd.classList.contains('col-bd')) bd.classList.toggle('open');
+  });
+});
+
+// ─── Nav active state on scroll ───
+var navLinks = document.querySelectorAll('.nav a');
+var ids = ['intro','part1','tcz','thm','intuition','part2','sym','evo','ethic','concl','ref','appendix'];
+window.addEventListener('scroll', function() {
+  var y = window.scrollY + 90;
+  for (var i = ids.length - 1; i >= 0; i--) {
+    var el = document.getElementById(ids[i]);
+    if (el && y >= el.offsetTop) {
+      navLinks.forEach(function(l){ l.classList.remove('on'); });
+      if (navLinks[i]) navLinks[i].classList.add('on');
+      break;
+    }
+  }
+}, { passive: true });
+</script>
+
+</body>
+</html>
